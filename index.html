@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f3ed">
+    <title>Tapish Pawar | Personal Homepage</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #1d2925;
+        --muted: #65736c;
+        --paper: #f5f3ed;
+        --card: #fffefa;
+        --green: #245c49;
+        --lime: #d7ed9f;
+        --line: #e4e6dc;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-width: 320px;
+        min-height: 100vh;
+        margin: 0;
+        background:
+          radial-gradient(ellipse at 12% 8%, rgb(215 237 159 / 36%), transparent 34rem),
+          var(--paper);
+        color: var(--ink);
+        font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+        line-height: 1.6;
+      }
+
+      .page {
+        width: min(100% - 40px, 1040px);
+        margin: 0 auto;
+        padding: 34px 0 52px;
+      }
+
+      .topline {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .mark {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .mark::before {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--green);
+        content: "";
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 190px;
+        align-items: center;
+        gap: 32px;
+        padding: 70px 0 46px;
+      }
+
+      .eyebrow {
+        margin: 0 0 12px;
+        color: var(--green);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 680px;
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(3rem, 8vw, 5.7rem);
+        font-weight: 400;
+        letter-spacing: -0.065em;
+        line-height: 0.99;
+      }
+
+      .intro {
+        max-width: 550px;
+        margin: 24px 0 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 2vw, 1.15rem);
+      }
+
+      .portrait {
+        display: grid;
+        width: 176px;
+        aspect-ratio: 1;
+        place-items: center;
+        border: 1px solid rgb(36 92 73 / 14%);
+        border-radius: 50%;
+        background: linear-gradient(145deg, #e1efc6, #c8dfb5);
+        color: var(--green);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 3.5rem;
+      }
+
+      .site-card {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: var(--card);
+        box-shadow: 0 20px 60px rgb(34 52 42 / 7%);
+      }
+
+      .tabs {
+        display: flex;
+        gap: 4px;
+        overflow-x: auto;
+        padding: 12px;
+        border-bottom: 1px solid var(--line);
+        scrollbar-width: thin;
+      }
+
+      .tab {
+        flex: 0 0 auto;
+        padding: 11px 17px;
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+        font: inherit;
+        font-size: 0.92rem;
+        font-weight: 650;
+        transition: background 160ms ease, color 160ms ease;
+      }
+
+      .tab:hover {
+        background: #f1f3eb;
+        color: var(--ink);
+      }
+
+      .tab[aria-selected="true"] {
+        background: var(--green);
+        color: white;
+      }
+
+      .tab:focus-visible,
+      a:focus-visible {
+        outline: 3px solid #a1c56c;
+        outline-offset: 3px;
+      }
+
+      .panel {
+        min-height: 260px;
+        padding: clamp(28px, 6vw, 58px);
+      }
+
+      .panel[hidden] {
+        display: none;
+      }
+
+      .panel h2 {
+        margin: 0 0 14px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        font-weight: 400;
+        letter-spacing: -0.04em;
+      }
+
+      .panel p {
+        max-width: 650px;
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .publication-list {
+        margin: 30px 0 0;
+        padding: 0;
+        border-top: 1px solid var(--line);
+        list-style: none;
+      }
+
+      .publication-item {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px 20px;
+        align-items: start;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .publication-title {
+        color: var(--green);
+        font-weight: 700;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+      }
+
+      .publication-venue {
+        margin-top: 6px !important;
+        font-size: 0.9rem;
+      }
+
+      .publication-year {
+        color: var(--muted);
+        font-size: 0.9rem;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .scholar-link {
+        display: inline-block;
+        margin-top: 24px;
+        color: var(--green);
+        font-weight: 700;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+      }
+
+      .placeholder {
+        display: inline-block;
+        margin-top: 24px;
+        padding: 8px 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 22px 4px 0;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      @media (max-width: 620px) {
+        .page {
+          width: min(100% - 28px, 1040px);
+          padding-top: 22px;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 24px;
+          padding: 54px 0 34px;
+        }
+
+        .portrait {
+          width: 104px;
+          font-size: 2.4rem;
+        }
+
+        .tab {
+          padding: 10px 14px;
+        }
+
+        .footer {
+          flex-direction: column;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header>
+        <div class="topline">
+          <span class="mark">Personal Homepage</span>
+          <span>A little corner of the web</span>
+        </div>
+        <div class="hero">
+          <div>
+            <p class="eyebrow">Hello, and welcome</p>
+            <h1>Tapish Pawar</h1>
+            <p class="intro">
+              A short introduction goes here. Share what you do, what you care
+              about, and what you’re curious to explore next.
+            </p>
+          </div>
+          <div class="portrait" aria-label="Tapish Pawar initials">TP</div>
+        </div>
+      </header>
+
+      <section class="site-card" aria-label="Personal website sections">
+        <div class="tabs" role="tablist" aria-label="Main navigation">
+          <button class="tab" id="tab-home" type="button" role="tab" aria-selected="true" aria-controls="panel-home" tabindex="0">Home</button>
+          <button class="tab" id="tab-research" type="button" role="tab" aria-selected="false" aria-controls="panel-research" tabindex="-1">Research</button>
+          <button class="tab" id="tab-publications" type="button" role="tab" aria-selected="false" aria-controls="panel-publications" tabindex="-1">Publications</button>
+          <button class="tab" id="tab-fun" type="button" role="tab" aria-selected="false" aria-controls="panel-fun" tabindex="-1">Fun part</button>
+          <button class="tab" id="tab-contact" type="button" role="tab" aria-selected="false" aria-controls="panel-contact" tabindex="-1">Contact</button>
+        </div>
+
+        <section class="panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home" tabindex="0">
+          <p class="eyebrow">A quick introduction</p>
+          <h2>Welcome to my homepage.</h2>
+          <p>
+            This is a place to share a little about who I am and what I’m up to.
+            Replace this placeholder with a friendly introduction.
+          </p>
+          <span class="placeholder">Based in [Your City]</span>
+        </section>
+
+        <section class="panel" id="panel-research" role="tabpanel" aria-labelledby="tab-research" tabindex="0" hidden>
+          <p class="eyebrow">What I’m curious about</p>
+          <h2>Research</h2>
+          <p>
+            Add a few sentences about your research interests, current projects,
+            and the questions that motivate your work.
+          </p>
+          <span class="placeholder">Research area · Current project</span>
+        </section>
+
+        <section class="panel" id="panel-publications" role="tabpanel" aria-labelledby="tab-publications" tabindex="0" hidden>
+          <p class="eyebrow">Selected work</p>
+          <h2>Publications</h2>
+          <p>
+            Selected articles and preprints. Publication links open their DOI
+            records.
+          </p>
+          <ul class="publication-list">
+            <li class="publication-item">
+              <div>
+                <a class="publication-title" href="https://doi.org/10.21203/rs.3.rs-10529722/v1" target="_blank" rel="noreferrer">
+                  Integrative GWAS and Haplotype-Based Dissection Identify Additive Genomic Hotspots conferring Bacterial Leaf Streak Resistance in the Barley Interspecific Cytonuclear Multi-Parent Population (CMPP)
+                </a>
+                <p class="publication-venue">Research Square · Preprint</p>
+              </div>
+              <span class="publication-year">2026</span>
+            </li>
+            <li class="publication-item">
+              <div>
+                <a class="publication-title" href="https://doi.org/10.1094/pdis-04-26-0761-re" target="_blank" rel="noreferrer">
+                  Screening for Fusarium Head Blight (FHB) Resistance in Elite Spring Barley
+                </a>
+                <p class="publication-venue">Plant Disease</p>
+              </div>
+              <span class="publication-year">2026</span>
+            </li>
+            <li class="publication-item">
+              <div>
+                <a class="publication-title" href="https://doi.org/10.1007/s42360-024-00758-6" target="_blank" rel="noreferrer">
+                  Distribution of cotton leaf curl virus species/strain and characterization of associated satellite molecules in Gossypium hirsutum
+                </a>
+                <p class="publication-venue">Indian Phytopathology</p>
+              </div>
+              <span class="publication-year">2024</span>
+            </li>
+            <li class="publication-item">
+              <div>
+                <a class="publication-title" href="https://doi.org/10.5958/2249-8788.2022.00027.0" target="_blank" rel="noreferrer">
+                  Impact of Priaxor (fluxapyroxad 167g/l + pyraclostrobin 333g/l SC) on fungal foliar leaf spots in upland cotton
+                </a>
+                <p class="publication-venue">Plant Disease Research</p>
+              </div>
+              <span class="publication-year">2022</span>
+            </li>
+            <li class="publication-item">
+              <div>
+                <a class="publication-title" href="https://doi.org/10.5958/2249-8788.2022.00018.x" target="_blank" rel="noreferrer">
+                  Evaluation of the bioformulation of potent strains of Trichoderma spp. and Pseudomonas spp. against Fusarial wilt of bottle gourd (Lagenaria siceraria)
+                </a>
+                <p class="publication-venue">Plant Disease Research</p>
+              </div>
+              <span class="publication-year">2022</span>
+            </li>
+            <li class="publication-item">
+              <div>
+                <a class="publication-title" href="https://doi.org/10.5958/2249-8788.2021.00031.7" target="_blank" rel="noreferrer">
+                  Screening of American cotton (Gossypium hirsutum) genotypes against cotton leaf curl associated begomoviruses
+                </a>
+                <p class="publication-venue">Plant Disease Research</p>
+              </div>
+              <span class="publication-year">2021</span>
+            </li>
+          </ul>
+          <a class="scholar-link" href="https://scholar.google.com/scholar?q=%22Tapish+Pawar%22" target="_blank" rel="noreferrer">
+            Search Tapish Pawar on Google Scholar
+          </a>
+        </section>
+
+        <section class="panel" id="panel-fun" role="tabpanel" aria-labelledby="tab-fun" tabindex="0" hidden>
+          <p class="eyebrow">Outside the usual</p>
+          <h2>The fun part</h2>
+          <p>
+            Tell visitors what you enjoy beyond work: hobbies, favorite places,
+            small adventures, or something you’re learning just for fun.
+          </p>
+          <span class="placeholder">A few favorite things</span>
+        </section>
+
+        <section class="panel" id="panel-contact" role="tabpanel" aria-labelledby="tab-contact" tabindex="0" hidden>
+          <p class="eyebrow">Let’s connect</p>
+          <h2>Contact</h2>
+          <p>
+            Add the best way to reach you, along with any professional or social
+            links you’d like to share.
+          </p>
+          <span class="placeholder">you@example.com</span>
+        </section>
+      </section>
+
+      <footer class="footer">
+        <span>© <span id="year"></span> Tapish Pawar</span>
+        <span>Made with care, by me.</span>
+      </footer>
+    </main>
+    <script>
+      const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+      const panels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
+
+      function activateTab(tab, moveFocus = false) {
+        tabs.forEach((item) => {
+          const selected = item === tab;
+          item.setAttribute("aria-selected", String(selected));
+          item.tabIndex = selected ? 0 : -1;
+        });
+        panels.forEach((panel) => {
+          panel.hidden = panel.id !== tab.getAttribute("aria-controls");
+        });
+        if (moveFocus) tab.focus();
+      }
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => activateTab(tab));
+        tab.addEventListener("keydown", (event) => {
+          let nextIndex;
+          if (event.key === "ArrowRight") nextIndex = (index + 1) % tabs.length;
+          if (event.key === "ArrowLeft") nextIndex = (index - 1 + tabs.length) % tabs.length;
+          if (event.key === "Home") nextIndex = 0;
+          if (event.key === "End") nextIndex = tabs.length - 1;
+          if (nextIndex !== undefined) {
+            event.preventDefault();
+            activateTab(tabs[nextIndex], true);
+          }
+        });
+      });
+
+      document.querySelector("#year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
