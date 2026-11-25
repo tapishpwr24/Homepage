@@ -6,6 +6,17 @@
     <meta name="theme-color" content="#0033A0">
     <meta name="description" content="Tapish Pawar's personal website featuring research in plant pathology, crop disease management, and disease resistance.">
     <title>Tapish Pawar | Plant Pathology Research</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Tapish Pawar | Plant Pathology Research">
+    <meta property="og:description" content="Tapish Pawar's personal website featuring research in plant pathology, crop disease management, and disease resistance.">
+    <meta property="og:image" content="tapish-pawar-avatar.jpg">
+    <meta property="og:image:width" content="200">
+    <meta property="og:image:height" content="200">
+    <meta property="og:image:alt" content="Portrait of Tapish Pawar">
+    <meta name="twitter:card" content="summary">
     <style>
       :root {
         color-scheme: light;
@@ -690,8 +701,19 @@
         grid-template-columns: minmax(0, 1fr) auto;
         align-items: start;
         gap: 8px 18px;
-        padding: 18px 2px;
+        padding: 18px 12px;
+        margin: 0 -10px;
         border-bottom: 1px solid var(--line);
+        border-radius: 10px;
+        transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+      }
+
+      .publication-item:hover,
+      .publication-item:focus-within {
+        transform: translateY(-2px);
+        border-bottom-color: transparent;
+        background: var(--card);
+        box-shadow: 0 6px 18px rgb(12 35 64 / 8%);
       }
 
       .publication-title {
@@ -944,6 +966,18 @@
         }
       }
 
+      /* Hidden instantly; only the reveal is animated. */
+      .js-reveal .content-section.reveal {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+
+      .js-reveal .content-section.reveal.is-visible {
+        opacity: 1;
+        transform: none;
+        transition: opacity 600ms ease, transform 600ms ease;
+      }
+
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
@@ -953,6 +987,11 @@
         *::before,
         *::after {
           transition-duration: 0.01ms !important;
+        }
+
+        .publication-item:hover,
+        .publication-item:focus-within {
+          transform: none;
         }
       }
     </style>
@@ -1434,6 +1473,31 @@
       const navToggle = document.querySelector(".nav-toggle");
       const navLinks = [...nav.querySelectorAll('a[href^="#"]')];
       const narrowScreen = window.matchMedia("(max-width: 699.98px)");
+
+      // Fade each section in the first time it scrolls into view.
+      const motionOK = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (motionOK && "IntersectionObserver" in window) {
+        const revealSections = document.querySelectorAll(".content-section");
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -10% 0px" }
+        );
+        // Sections already on screen at load show at once, without animating.
+        revealSections.forEach((section) => {
+          const top = section.getBoundingClientRect().top;
+          if (top < window.innerHeight * 0.9) return;
+          section.classList.add("reveal");
+          revealObserver.observe(section);
+        });
+        document.documentElement.classList.add("js-reveal");
+      }
 
       // Collapsible menu for narrow screens.
       function setMenuOpen(open) {
