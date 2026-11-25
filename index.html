@@ -488,6 +488,19 @@
         aspect-ratio: 16 / 9;
       }
 
+      /* 16:9 and 4:3 photos side by side at one height: widths 16 to 12. */
+      .field-photos.wide-pair {
+        grid-template-columns: 16fr 12fr;
+      }
+
+      .wide-pair .field-moment.wide-photo {
+        margin-top: 0;
+      }
+
+      .wide-pair .field-moment.wide-photo:nth-child(2) img {
+        aspect-ratio: 4 / 3;
+      }
+
       .field-photos--two {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -823,7 +836,8 @@
           grid-column: 1 / -1;
         }
 
-        .field-photos--two {
+        .field-photos--two,
+        .field-photos.wide-pair {
           grid-template-columns: 1fr;
         }
 
@@ -1296,6 +1310,7 @@
               </figcaption>
             </figure>
           </div>
+          <div class="field-photos wide-pair">
           <figure class="field-moment wide-photo">
             <img decoding="async" src="ahps-gsa.jpg" alt="Tapish Pawar with members of the AHPS Graduate Student Association and the department head, standing together on the grass in a park on a summer evening" width="1024" height="576" loading="lazy">
             <figcaption>
@@ -1304,6 +1319,15 @@
               (Agronomy, Horticulture and Plant Science) at a summer get-together.
             </figcaption>
           </figure>
+          <figure class="field-moment wide-photo">
+            <img decoding="async" src="newport-beach.jpg" alt="Tapish Pawar and Nikhil smiling in sunglasses at the edge of the sea in Newport, Rhode Island" width="800" height="600" loading="lazy">
+            <figcaption>
+              <span class="section-kicker">Newport, Rhode Island</span>
+              After Plant Health 2026 in Providence, a trip to the coast at Newport
+              with Nikhil.
+            </figcaption>
+          </figure>
+          </div>
         </section>
 
         <section class="content-section" id="contact">
