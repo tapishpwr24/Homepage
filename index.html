@@ -560,6 +560,25 @@
         min-width: 0;
       }
 
+      .presentation-list {
+        display: grid;
+        gap: 16px;
+      }
+
+      .presentation--wide {
+        grid-template-columns: 1fr;
+      }
+
+      .presentation-media {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .presentation--wide .presentation-media img {
+        aspect-ratio: 4 / 3;
+      }
+
       .presentation h4 {
         margin: 0;
         font-family: Georgia, "Times New Roman", serif;
@@ -720,8 +739,12 @@
           max-width: 260px;
         }
 
-        .presentation img {
+        .presentation > img {
           max-width: 260px;
+        }
+
+        .presentation-media {
+          grid-template-columns: 1fr;
         }
 
         .footer {
@@ -993,6 +1016,19 @@
           </a>
           <div class="bio-group">
             <h3>Conference presentations</h3>
+            <div class="presentation-list">
+            <article class="presentation presentation--wide">
+              <div class="presentation-media">
+                <img src="bls-meeting-2025-talk.jpg" alt="Tapish Pawar presenting a slide on the global distribution of Xanthomonas translucens and durum wheat production" width="1200" height="900" loading="lazy">
+                <img src="bls-meeting-2025-group.jpg" alt="Group selfie of meeting attendees in front of the Norman Borlaug statue at the University of Minnesota" width="1200" height="900" loading="lazy">
+              </div>
+              <div class="presentation-body">
+                <p class="section-kicker">Talk · 2025</p>
+                <h4>Bacterial leaf streak in durum wheat</h4>
+                <p class="presentation-venue">Bacterial Leaf Streak meeting · University of Minnesota, Minneapolis</p>
+                <p class="presentation-summary">My first BLS meeting. I presented my research on bacterial leaf streak in durum wheat, starting with where <i>Xanthomonas translucens</i> occurs worldwide and how that overlaps with durum wheat production. Afterwards, attendees gathered for a photo at the Norman Borlaug statue on campus.</p>
+              </div>
+            </article>
             <article class="presentation">
               <img src="nc-aps-2024-poster.jpg" alt="Tapish Pawar standing beside poster 60 on spot blotch resistance in barley at NC APS 2024" width="900" height="1200" loading="lazy">
               <div class="presentation-body">
@@ -1003,6 +1039,7 @@
                 <p class="presentation-summary">Genome-wide association mapping of seedling resistance to spot blotch (<i>Bipolaris sorokiniana</i>) in 352 CMPP barley lines identified four marker–trait associations on chromosomes 1H, 5H, 6H and 7H.</p>
               </div>
             </article>
+            </div>
           </div>
         </section>
 
