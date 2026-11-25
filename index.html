@@ -698,9 +698,7 @@
 
       .publication-item {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        align-items: start;
-        gap: 8px 18px;
+        gap: 10px;
         padding: 18px 12px;
         margin: 0 -10px;
         border-bottom: 1px solid var(--line);
@@ -716,23 +714,85 @@
         box-shadow: 0 6px 18px rgb(12 35 64 / 8%);
       }
 
-      .publication-title {
+      .citation {
+        margin: 0;
+        max-width: 72ch;
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.6;
+      }
+
+      .citation .me {
+        color: var(--ink);
+        font-weight: 750;
+      }
+
+      .citation-title {
+        color: var(--ink);
+        font-weight: 400;
+      }
+
+      .citation-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 14px;
+      }
+
+      .pub-tag {
+        padding: 2px 9px;
+        border-radius: 999px;
+        font-size: 0.7rem;
+        font-weight: 750;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .pub-tag--article {
+        background: rgb(0 51 160 / 9%);
         color: var(--blue);
-        font-size: 0.94rem;
-        font-weight: 700;
-        text-decoration-thickness: 1px;
       }
 
-      .publication-venue {
-        margin: 5px 0 0;
-        color: var(--muted);
-        font-size: 0.82rem;
+      .pub-tag--preprint {
+        background: rgb(255 209 0 / 28%);
+        color: var(--ink);
       }
 
-      .publication-year {
-        color: var(--muted);
-        font-size: 0.83rem;
-        font-variant-numeric: tabular-nums;
+      .doi-link {
+        min-width: 0;
+        font-size: 0.78rem;
+        text-decoration: none;
+        overflow-wrap: anywhere;
+      }
+
+      .doi-link:hover {
+        text-decoration: underline;
+      }
+
+      .copy-citation {
+        padding: 3px 10px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: var(--card);
+        color: var(--ink);
+        font: inherit;
+        font-size: 0.76rem;
+        font-weight: 650;
+        cursor: pointer;
+      }
+
+      .copy-citation:hover {
+        border-color: var(--light-blue);
+      }
+
+      .copy-citation:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 2px;
+      }
+
+      .copy-citation.is-copied {
+        border-color: #2E7D4F;
+        color: #2E7D4F;
       }
 
       .presentation {
@@ -1253,62 +1313,86 @@
           <p class="lead">Articles and preprints related to plant pathology and crop disease.</p>
           <ul class="publication-list">
             <li class="publication-item">
-              <div>
-                <a class="publication-title" href="https://doi.org/10.21203/rs.3.rs-10529722/v1" target="_blank" rel="noreferrer">
-                  Integrative GWAS and Haplotype-Based Dissection Identify Additive Genomic Hotspots conferring Bacterial Leaf Streak Resistance in the Barley Interspecific Cytonuclear Multi-Parent Population (CMPP)
-                </a>
-                <p class="publication-venue">Research Square · Preprint</p>
+              <p class="citation">
+                <span class="citation-authors">Ahmad, M., Sivakumar, T., Tilstra, J., <strong class="me">Pawar, T.</strong>, Beery, A., Bodenheimer, S., Yang, S., Solanki, S., Fridman, E., &amp; Ameen, G.</span>
+                <span class="citation-year">(2026).</span>
+                <span class="citation-title">Integrative GWAS and haplotype-based dissection identify additive genomic hotspots conferring bacterial leaf streak resistance in the barley interspecific cytonuclear multi-parent population (CMPP).</span>
+                <span class="citation-source"><i>Research Square</i> [Preprint, version 1].</span>
+              </p>
+              <div class="citation-actions">
+                <span class="pub-tag pub-tag--preprint">Preprint</span>
+                <a class="doi-link" href="https://doi.org/10.21203/rs.3.rs-10529722/v1" target="_blank" rel="noreferrer">DOI: 10.21203/rs.3.rs-10529722/v1</a>
+                <button class="copy-citation" type="button" aria-live="polite" data-doi="10.21203/rs.3.rs-10529722/v1">Copy citation</button>
               </div>
-              <span class="publication-year">2026</span>
             </li>
             <li class="publication-item">
-              <div>
-                <a class="publication-title" href="https://doi.org/10.1094/pdis-04-26-0761-re" target="_blank" rel="noreferrer">
-                  Screening for Fusarium Head Blight (FHB) Resistance in Elite Spring Barley
-                </a>
-                <p class="publication-venue">Plant Disease</p>
+              <p class="citation">
+                <span class="citation-authors"><strong class="me">Pawar, T.</strong>, Fathima, T., Tilstra, J., Sehgal, S. K., Graham, C., Gonzalez Hernandez, J. L., Ali, S., Solanki, S., &amp; Ameen, G.</span>
+                <span class="citation-year">(2026).</span>
+                <span class="citation-title">Screening for Fusarium head blight (FHB) resistance in elite spring barley.</span>
+                <span class="citation-source"><i>Plant Disease</i>. Advance online publication.</span>
+              </p>
+              <div class="citation-actions">
+                <span class="pub-tag pub-tag--article">Journal article</span>
+                <a class="doi-link" href="https://doi.org/10.1094/PDIS-04-26-0761-RE" target="_blank" rel="noreferrer">DOI: 10.1094/PDIS-04-26-0761-RE</a>
+                <button class="copy-citation" type="button" aria-live="polite" data-doi="10.1094/PDIS-04-26-0761-RE">Copy citation</button>
               </div>
-              <span class="publication-year">2026</span>
             </li>
             <li class="publication-item">
-              <div>
-                <a class="publication-title" href="https://doi.org/10.1007/s42360-024-00758-6" target="_blank" rel="noreferrer">
-                  Distribution of cotton leaf curl virus species/strain and characterization of associated satellite molecules in Gossypium hirsutum
-                </a>
-                <p class="publication-venue">Indian Phytopathology</p>
+              <p class="citation">
+                <span class="citation-authors"><strong class="me">Pawar, T.</strong>, Sharma, S., Arora, R. K., &amp; Biswas, K. K.</span>
+                <span class="citation-year">(2024).</span>
+                <span class="citation-title">Distribution of cotton leaf curl virus species/strain and characterization of associated satellite molecules in <i>Gossypium hirsutum</i>.</span>
+                <span class="citation-source"><i>Indian Phytopathology</i>, <i>77</i>, 815–823.</span>
+              </p>
+              <div class="citation-actions">
+                <span class="pub-tag pub-tag--article">Journal article</span>
+                <a class="doi-link" href="https://doi.org/10.1007/s42360-024-00758-6" target="_blank" rel="noreferrer">DOI: 10.1007/s42360-024-00758-6</a>
+                <button class="copy-citation" type="button" aria-live="polite" data-doi="10.1007/s42360-024-00758-6">Copy citation</button>
               </div>
-              <span class="publication-year">2024</span>
             </li>
             <li class="publication-item">
-              <div>
-                <a class="publication-title" href="https://doi.org/10.5958/2249-8788.2022.00027.0" target="_blank" rel="noreferrer">
-                  Impact of Priaxor (fluxapyroxad 167g/l + pyraclostrobin 333g/l SC) on fungal foliar leaf spots in upland cotton
-                </a>
-                <p class="publication-venue">Plant Disease Research</p>
+              <p class="citation">
+                <span class="citation-authors">Buttar, D. S., <strong class="me">Pawar, T.</strong>, &amp; Grewal, I. S.</span>
+                <span class="citation-year">(2022).</span>
+                <span class="citation-title">Impact of Priaxor (fluxapyroxad 167 g/L + pyraclostrobin 333 g/L SC) on fungal foliar leaf spots in upland cotton.</span>
+                <span class="citation-source"><i>Plant Disease Research</i>, <i>37</i>(2), 164–168.</span>
+              </p>
+              <div class="citation-actions">
+                <span class="pub-tag pub-tag--article">Journal article</span>
+                <a class="doi-link" href="https://doi.org/10.5958/2249-8788.2022.00027.0" target="_blank" rel="noreferrer">DOI: 10.5958/2249-8788.2022.00027.0</a>
+                <button class="copy-citation" type="button" aria-live="polite" data-doi="10.5958/2249-8788.2022.00027.0">Copy citation</button>
               </div>
-              <span class="publication-year">2022</span>
             </li>
             <li class="publication-item">
-              <div>
-                <a class="publication-title" href="https://doi.org/10.5958/2249-8788.2022.00018.x" target="_blank" rel="noreferrer">
-                  Evaluation of the bioformulation of potent strains of Trichoderma spp. and Pseudomonas spp. against Fusarial wilt of bottle gourd (Lagenaria siceraria)
-                </a>
-                <p class="publication-venue">Plant Disease Research</p>
+              <p class="citation">
+                <span class="citation-authors">Ruchika, Singh, N., Buttar, D. S., Choudhary, A. K., &amp; <strong class="me">Pawar, T.</strong></span>
+                <span class="citation-year">(2022).</span>
+                <span class="citation-title">Evaluation of the bioformulation of potent strains of <i>Trichoderma</i> spp. and <i>Pseudomonas</i> spp. against Fusarial wilt of bottle gourd (<i>Lagenaria siceraria</i>).</span>
+                <span class="citation-source"><i>Plant Disease Research</i>, <i>37</i>(2), 99–109.</span>
+              </p>
+              <div class="citation-actions">
+                <span class="pub-tag pub-tag--article">Journal article</span>
+                <a class="doi-link" href="https://doi.org/10.5958/2249-8788.2022.00018.x" target="_blank" rel="noreferrer">DOI: 10.5958/2249-8788.2022.00018.x</a>
+                <button class="copy-citation" type="button" aria-live="polite" data-doi="10.5958/2249-8788.2022.00018.x">Copy citation</button>
               </div>
-              <span class="publication-year">2022</span>
             </li>
             <li class="publication-item">
-              <div>
-                <a class="publication-title" href="https://doi.org/10.5958/2249-8788.2021.00031.7" target="_blank" rel="noreferrer">
-                  Screening of American cotton (Gossypium hirsutum) genotypes against cotton leaf curl associated begomoviruses
-                </a>
-                <p class="publication-venue">Plant Disease Research</p>
+              <p class="citation">
+                <span class="citation-authors"><strong class="me">Pawar, T.</strong>, Arora, R. K., Sharma, S., Singh, P., &amp; Singh, M.</span>
+                <span class="citation-year">(2021).</span>
+                <span class="citation-title">Screening of American cotton (<i>Gossypium hirsutum</i>) genotypes against cotton leaf curl associated begomoviruses in Punjab.</span>
+                <span class="citation-source"><i>Plant Disease Research</i>, <i>36</i>(2), 196–201.</span>
+              </p>
+              <div class="citation-actions">
+                <span class="pub-tag pub-tag--article">Journal article</span>
+                <a class="doi-link" href="https://doi.org/10.5958/2249-8788.2021.00031.7" target="_blank" rel="noreferrer">DOI: 10.5958/2249-8788.2021.00031.7</a>
+                <button class="copy-citation" type="button" aria-live="polite" data-doi="10.5958/2249-8788.2021.00031.7">Copy citation</button>
               </div>
-              <span class="publication-year">2021</span>
             </li>
           </ul>
-          <a class="section-link" href="https://scholar.google.com/scholar?q=%22Tapish+Pawar%22" target="_blank" rel="noreferrer">
-            Search Tapish Pawar on Google Scholar ↗
+          <a class="section-link" href="https://scholar.google.com/citations?user=XZpXRLUAAAAJ&amp;hl=en" target="_blank" rel="noreferrer">
+            Tapish Pawar on Google Scholar ↗
           </a>
           <div class="bio-group">
             <h3>Conference presentations</h3>
@@ -1498,6 +1582,51 @@
         });
         document.documentElement.classList.add("js-reveal");
       }
+
+      // Copy a publication's citation as plain text.
+      function copyText(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+          return navigator.clipboard.writeText(text);
+        }
+        // Fallback for older browsers and pages not served over HTTPS.
+        const field = document.createElement("textarea");
+        field.value = text;
+        field.setAttribute("readonly", "");
+        field.style.position = "fixed";
+        field.style.opacity = "0";
+        document.body.append(field);
+        field.select();
+        const ok = document.execCommand("copy");
+        field.remove();
+        return ok ? Promise.resolve() : Promise.reject(new Error("Copy failed"));
+      }
+
+      document.querySelectorAll(".copy-citation").forEach((button) => {
+        const label = button.textContent;
+        button.addEventListener("click", () => {
+          const citation = button.closest(".publication-item").querySelector(".citation");
+          const text =
+            citation.textContent.replace(/\s+/g, " ").trim() +
+            " https://doi.org/" + button.dataset.doi;
+          copyText(text)
+            .then(() => {
+              button.textContent = "Copied";
+              button.classList.add("is-copied");
+            })
+            .catch(() => {
+              // Select the citation so it can be copied by hand.
+              window.getSelection().selectAllChildren(citation);
+              button.textContent = "Press Ctrl+C to copy";
+            })
+            .finally(() => {
+              clearTimeout(button.resetTimer);
+              button.resetTimer = setTimeout(() => {
+                button.textContent = label;
+                button.classList.remove("is-copied");
+              }, 2000);
+            });
+        });
+      });
 
       // Collapsible menu for narrow screens.
       function setMenuOpen(open) {
