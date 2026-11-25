@@ -599,6 +599,14 @@
         aspect-ratio: 4 / 3;
       }
 
+      .presentation-media.presentation-media--single {
+        grid-template-columns: 1fr;
+      }
+
+      .presentation--wide .presentation-media--single img {
+        aspect-ratio: 1400 / 788;
+      }
+
       /* Column widths follow each photo's shape so all three share one height. */
       .presentation-media--trio {
         grid-template-columns: 16fr 9fr 9fr;
@@ -987,7 +995,9 @@
                 Scoring disease by eye is slow and varies between raters. I use
                 leaf images and deep-learning classification to measure disease
                 severity more quickly and consistently, so that large screening
-                trials can be rated on the same scale.
+                trials can be rated on the same scale. In a comparison of five
+                deep-learning models on 3,870 wheat leaf images, ResNet50
+                classified eight disease classes, including BLS, most accurately.
               </p>
             </article>
             <article class="research-area">
@@ -1121,6 +1131,18 @@
           <div class="bio-group">
             <h3>Conference presentations</h3>
             <div class="presentation-list">
+            <article class="presentation presentation--wide">
+              <div class="presentation-media presentation-media--single">
+                <img decoding="async" src="nc-aps-2026-poster.jpg" alt="Tapish Pawar standing beside a poster on deep learning-based classification of wheat foliar diseases with a focus on bacterial leaf streak" width="1400" height="788" loading="lazy">
+              </div>
+              <div class="presentation-body">
+                <p class="section-kicker">Poster · 2026</p>
+                <h4>Deep Learning-Based Classification of Wheat Foliar Diseases with a Focus on Bacterial Leaf Streak</h4>
+                <p class="presentation-authors"><strong>Tapish Pawar</strong>, Carolyn Heisel, Maitiniyazi Maimaitijiang, Kishore Chittem, Shyam Solanki, and <a href="https://www.sdstate.edu/directory/gazala-ameen" target="_blank" rel="noreferrer">Gazala Ameen</a></p>
+                <p class="presentation-venue">APS North Central Division Meeting (NC APS 2026) · Michigan State University, East Lansing</p>
+                <p class="presentation-summary">Visual disease scoring is slow and varies between raters. Using 3,870 field, greenhouse and public images across eight classes, I compared five transfer-learning models with an SVM baseline. ResNet50 performed best (weighted F1 of 0.953), BLS detection was near-perfect, and Grad-CAM maps showed the model focusing on the lesions. A U-Net segmentation step extends the workflow toward pixel-based severity estimates.</p>
+              </div>
+            </article>
             <article class="presentation">
               <img decoding="async" src="bls-conference-2026-talk.jpg" alt="Tapish Pawar speaking at a podium with a table of BLS resistance SNPs on the screen above" width="480" height="640" loading="lazy">
               <div class="presentation-body">
