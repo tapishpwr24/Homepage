@@ -6,6 +6,17 @@
     <meta name="theme-color" content="#0033A0">
     <meta name="description" content="Tapish Pawar's personal website featuring research in plant pathology, crop disease management, and disease resistance.">
     <title>Tapish Pawar | Plant Pathology Research</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Tapish Pawar | Plant Pathology Research">
+    <meta property="og:description" content="Tapish Pawar's personal website featuring research in plant pathology, crop disease management, and disease resistance.">
+    <meta property="og:image" content="tapish-pawar-avatar.jpg">
+    <meta property="og:image:width" content="200">
+    <meta property="og:image:height" content="200">
+    <meta property="og:image:alt" content="Portrait of Tapish Pawar">
+    <meta name="twitter:card" content="summary">
     <style>
       :root {
         color-scheme: light;
@@ -118,20 +129,162 @@
       }
 
       .main-nav a {
-        padding: 24px 0 21px;
-        border-bottom: 3px solid transparent;
+        position: relative;
+        padding: 24px 0;
         color: var(--muted);
         font-size: 0.82rem;
         font-weight: 650;
         text-decoration: none;
         white-space: nowrap;
-        transition: border-color 150ms ease, color 150ms ease;
+        transition: color 150ms ease;
+      }
+
+      .main-nav a::after {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 3px;
+        border-radius: 3px 3px 0 0;
+        background: var(--yellow);
+        content: "";
+        transform: scaleX(0);
+        transition: transform 200ms ease;
+      }
+
+      .main-nav a:hover::after,
+      .main-nav a:focus-visible::after,
+      .main-nav a[aria-current="location"]::after {
+        transform: scaleX(1);
       }
 
       .main-nav a:hover,
-      .main-nav a:focus-visible {
-        border-bottom-color: var(--yellow);
+      .main-nav a:focus-visible,
+      .main-nav a[aria-current="location"] {
         color: var(--blue);
+      }
+
+      .nav-toggle {
+        display: none;
+        align-items: center;
+        gap: 9px;
+        padding: 8px 13px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--card);
+        color: var(--ink);
+        font: inherit;
+        font-size: 0.85rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .nav-toggle:hover {
+        border-color: var(--light-blue);
+      }
+
+      .nav-toggle:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 2px;
+      }
+
+      /* Three-line icon that turns into an X when the menu is open. */
+      .nav-toggle-icon,
+      .nav-toggle-icon::before,
+      .nav-toggle-icon::after {
+        display: block;
+        width: 16px;
+        height: 2px;
+        border-radius: 2px;
+        background: currentColor;
+        transition: transform 150ms ease, background-color 150ms ease;
+      }
+
+      .nav-toggle-icon {
+        position: relative;
+      }
+
+      .nav-toggle-icon::before,
+      .nav-toggle-icon::after {
+        position: absolute;
+        left: 0;
+        content: "";
+      }
+
+      .nav-toggle-icon::before {
+        top: -5px;
+      }
+
+      .nav-toggle-icon::after {
+        top: 5px;
+      }
+
+      .nav-toggle[aria-expanded="true"] .nav-toggle-icon {
+        background-color: transparent;
+      }
+
+      .nav-toggle[aria-expanded="true"] .nav-toggle-icon::before {
+        transform: translateY(5px) rotate(45deg);
+      }
+
+      .nav-toggle[aria-expanded="true"] .nav-toggle-icon::after {
+        transform: translateY(-5px) rotate(-45deg);
+      }
+
+      /* Below 700px the links collapse behind the Menu button. */
+      @media (max-width: 699.98px) {
+        html {
+          scroll-padding-top: 76px;
+        }
+
+        .header-inner {
+          position: relative;
+          width: min(100% - 28px, 1180px);
+          min-height: 60px;
+        }
+
+        .nav-toggle {
+          display: inline-flex;
+        }
+
+        .main-nav {
+          position: absolute;
+          top: 100%;
+          right: -14px;
+          left: -14px;
+          display: none;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          padding: 6px 14px 12px;
+          border-bottom: 1px solid var(--line);
+          background: var(--card);
+          box-shadow: 0 12px 24px rgb(12 35 64 / 10%);
+        }
+
+        .main-nav.is-open {
+          display: flex;
+          animation: menu-in 180ms ease-out;
+        }
+
+        .main-nav a::after {
+          display: none;
+        }
+
+        .main-nav a {
+          padding: 12px 10px;
+          border-bottom: 0;
+          border-left: 3px solid transparent;
+          font-size: 0.95rem;
+        }
+
+        .main-nav a:hover,
+        .main-nav a:focus-visible,
+        .main-nav a[aria-current="location"] {
+          border-left-color: var(--yellow);
+          background: var(--paper);
+        }
+
       }
 
       .page-shell {
@@ -256,10 +409,6 @@
         min-width: 0;
       }
 
-      .content-section {
-        scroll-margin-top: 92px;
-      }
-
       .content-section + .content-section {
         margin-top: 48px;
         padding-top: 42px;
@@ -345,6 +494,81 @@
         margin-top: 8px;
       }
 
+      .research-areas {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .research-area {
+        min-width: 0;
+        padding: 20px 22px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--card);
+        transition: transform 220ms ease, box-shadow 220ms ease;
+      }
+
+      .research-area--feature {
+        display: grid;
+        grid-column: 1 / -1;
+        grid-template-columns: minmax(0, 1fr) 220px;
+        align-items: start;
+        gap: 22px;
+      }
+
+      .research-area--wide {
+        display: grid;
+        grid-column: 1 / -1;
+        gap: 18px;
+      }
+
+      .research-area--full {
+        grid-column: 1 / -1;
+      }
+
+      .research-strip {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .research-area h3 {
+        margin: 0 0 8px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.2rem;
+        font-weight: 400;
+        line-height: 1.3;
+      }
+
+      .research-area p {
+        margin: 0;
+        color: #3F526B;
+        font-size: 0.92rem;
+        line-height: 1.6;
+      }
+
+      .research-photo {
+        margin: 0;
+      }
+
+      .research-photo img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 3 / 4;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+
+      .research-photo figcaption {
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 0.78rem;
+        line-height: 1.45;
+      }
+
       .featured-study {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto;
@@ -355,6 +579,116 @@
         border: 1px solid rgb(0 51 160 / 14%);
         border-radius: 14px;
         background: linear-gradient(110deg, rgb(255 209 0 / 17%), #FFFDF0);
+      }
+
+      .field-moment {
+        margin: 22px 0 0;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--card);
+        transition: transform 220ms ease, box-shadow 220ms ease;
+      }
+
+      .field-moment > img {
+        transition: transform 400ms ease;
+      }
+
+      .field-moment video {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        background: var(--navy);
+      }
+
+      .field-photos {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 16px;
+      }
+
+      .field-photos .field-moment {
+        margin: 0;
+      }
+
+      .field-moment.bio-banner img {
+        aspect-ratio: 961 / 496;
+      }
+
+      /* 4:3 lab photo beside a 3:4 portrait at one height: widths 16 to 9. */
+      .field-photos.lab-pair {
+        grid-template-columns: 16fr 9fr;
+      }
+
+      .field-moment.lab-feature {
+        margin-top: 0;
+      }
+
+      .field-moment.lab-feature > img {
+        aspect-ratio: 4 / 3;
+      }
+
+      .lab-feature figcaption {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .field-moment .lab-logo {
+        flex: 0 0 auto;
+        width: 72px;
+        height: auto;
+        aspect-ratio: 180 / 162;
+        object-fit: contain;
+      }
+
+      .field-moment.wide-photo {
+        margin-top: 16px;
+      }
+
+      .field-moment.wide-photo img {
+        aspect-ratio: 16 / 9;
+      }
+
+      /* 16:9 and 4:3 photos side by side at one height: widths 16 to 12. */
+      .field-photos.wide-pair {
+        grid-template-columns: 16fr 12fr;
+      }
+
+      .wide-pair .field-moment.wide-photo {
+        margin-top: 0;
+      }
+
+      .wide-pair .field-moment.wide-photo:nth-child(2) img {
+        aspect-ratio: 4 / 3;
+      }
+
+      .field-photos--two {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .field-moment img,
+      .field-photos .field-moment video {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+      }
+
+      .field-moment figcaption {
+        padding: 14px 18px;
+        color: var(--muted);
+        font-size: 0.86rem;
+        line-height: 1.5;
+      }
+
+      .field-moment figcaption .section-kicker {
+        display: block;
+        margin: 0 0 4px;
       }
 
       .featured-study h3 {
@@ -402,30 +736,187 @@
 
       .publication-item {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        align-items: start;
-        gap: 8px 18px;
-        padding: 18px 2px;
+        gap: 10px;
+        padding: 18px 12px;
+        margin: 0 -10px;
         border-bottom: 1px solid var(--line);
+        border-radius: 10px;
+        transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
       }
 
-      .publication-title {
+      .publication-item:hover,
+      .publication-item:focus-within {
+        transform: translateY(-2px);
+        border-bottom-color: transparent;
+        background: var(--card);
+        box-shadow: 0 6px 18px rgb(12 35 64 / 8%);
+      }
+
+      .citation {
+        margin: 0;
+        max-width: 72ch;
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.6;
+      }
+
+      .citation .me {
+        color: var(--ink);
+        font-weight: 750;
+      }
+
+      .citation-title {
+        color: var(--ink);
+        font-weight: 400;
+      }
+
+      .citation-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 14px;
+      }
+
+      .pub-tag {
+        padding: 2px 9px;
+        border-radius: 999px;
+        font-size: 0.7rem;
+        font-weight: 750;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .pub-tag--article {
+        background: rgb(0 51 160 / 9%);
         color: var(--blue);
-        font-size: 0.94rem;
+      }
+
+      .pub-tag--preprint {
+        background: rgb(255 209 0 / 28%);
+        color: var(--ink);
+      }
+
+      .doi-link {
+        min-width: 0;
+        font-size: 0.78rem;
+        text-decoration: none;
+        overflow-wrap: anywhere;
+      }
+
+      .doi-link:hover {
+        text-decoration: underline;
+      }
+
+      .copy-citation {
+        padding: 3px 10px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: var(--card);
+        color: var(--ink);
+        font: inherit;
+        font-size: 0.76rem;
+        font-weight: 650;
+        cursor: pointer;
+      }
+
+      .copy-citation:hover {
+        border-color: var(--light-blue);
+      }
+
+      .copy-citation:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 2px;
+      }
+
+      .copy-citation.is-copied {
+        border-color: #2E7D4F;
+        color: #2E7D4F;
+      }
+
+      .presentation {
+        display: grid;
+        grid-template-columns: 200px minmax(0, 1fr);
+        align-items: start;
+        gap: 22px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--card);
+        transition: transform 220ms ease, box-shadow 220ms ease;
+      }
+
+      .presentation img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 3 / 4;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+
+      .presentation-body {
+        min-width: 0;
+      }
+
+      .presentation-list {
+        display: grid;
+        gap: 16px;
+      }
+
+      /* Landscape photos sit in a wider column at their natural shape. */
+      .presentation--landscape {
+        grid-template-columns: 300px minmax(0, 1fr);
+      }
+
+      .presentation.presentation--landscape img {
+        aspect-ratio: auto;
+      }
+
+      .award-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .award-chips li {
+        padding: 4px 12px;
+        border: 1px solid rgb(255 209 0 / 70%);
+        border-radius: 999px;
+        background: rgb(255 209 0 / 18%);
+        color: var(--ink);
+        font-size: 0.8rem;
         font-weight: 700;
-        text-decoration-thickness: 1px;
       }
 
-      .publication-venue {
-        margin: 5px 0 0;
-        color: var(--muted);
-        font-size: 0.82rem;
+      .presentation h4 {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.15rem;
+        font-weight: 400;
+        line-height: 1.35;
+        text-wrap: balance;
       }
 
-      .publication-year {
+      .presentation-authors,
+      .presentation-venue,
+      .presentation-summary {
+        margin: 8px 0 0;
         color: var(--muted);
-        font-size: 0.83rem;
-        font-variant-numeric: tabular-nums;
+        font-size: 0.86rem;
+        line-height: 1.55;
+      }
+
+      .presentation-authors strong {
+        color: var(--ink);
+      }
+
+      .presentation-venue {
+        color: var(--blue);
+        font-weight: 650;
       }
 
       .section-link {
@@ -446,6 +937,19 @@
         max-width: 660px;
         margin: 0;
         color: var(--muted);
+      }
+
+      .contact-email {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 12px;
+        margin-top: 16px !important;
+        font-weight: 650;
+      }
+
+      .contact-email a {
+        overflow-wrap: anywhere;
       }
 
       .contact-address {
@@ -472,34 +976,19 @@
           gap: 38px;
         }
 
+        /* The content column is narrow here: smaller portrait photos, and
+           wide photos sit above the text. */
+        .presentation {
+          grid-template-columns: 150px minmax(0, 1fr);
+        }
+
+        .presentation.presentation--landscape {
+          grid-template-columns: 1fr;
+        }
+
       }
 
       @media (max-width: 680px) {
-        html {
-          scroll-padding-top: 118px;
-        }
-
-        .header-inner {
-          width: min(100% - 28px, 1180px);
-          min-height: auto;
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 0;
-          padding-top: 12px;
-        }
-
-        .main-nav {
-          width: 100%;
-          gap: 21px;
-          overflow-x: auto;
-          scrollbar-width: thin;
-        }
-
-        .main-nav a {
-          padding: 12px 0 10px;
-          font-size: 0.78rem;
-        }
-
         .page-shell {
           width: min(100% - 32px, 700px);
           grid-template-columns: 1fr;
@@ -524,11 +1013,6 @@
           margin-left: auto;
         }
 
-        .content-section,
-        .content-section + .content-section {
-          scroll-margin-top: 115px;
-        }
-
         .content-section + .content-section {
           margin-top: 39px;
           padding-top: 34px;
@@ -544,9 +1028,129 @@
           border: 0;
         }
 
+        /* Three-item rows: first item full width, the other two side by side. */
+        .field-photos {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 12px;
+        }
+
+        .field-photos > :first-child:nth-last-child(3) {
+          grid-column: 1 / -1;
+        }
+
+        .field-photos--two,
+        .field-photos.wide-pair {
+          grid-template-columns: 1fr;
+        }
+
+        /* Two portrait items that still fit side by side on a phone. */
+        .field-photos.lab-pair {
+          grid-template-columns: 1fr;
+        }
+
+        .research-strip {
+          grid-template-columns: 1fr;
+        }
+
+        .presentation {
+          grid-template-columns: 1fr;
+        }
+
+        .research-areas,
+        .research-area--feature {
+          grid-template-columns: 1fr;
+        }
+
+        .research-photo img {
+          max-width: 260px;
+        }
+
+        .presentation > img {
+          max-width: 260px;
+        }
+
+        .presentation--landscape > img {
+          max-width: 100%;
+        }
+
         .footer {
           flex-direction: column;
         }
+      }
+
+      /* Hover: cards rise a little; photos zoom slightly inside their frame. */
+      @media (hover: hover) {
+        .field-moment:hover,
+        .presentation:hover,
+        .research-area:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 10px 24px rgb(12 35 64 / 9%);
+        }
+
+        .field-moment:hover > img {
+          transform: scale(1.03);
+        }
+
+        .section-link:hover,
+        .featured-meta a:hover {
+          letter-spacing: 0.01em;
+        }
+      }
+
+      .section-link,
+      .featured-meta a {
+        transition: letter-spacing 200ms ease;
+      }
+
+      /* Profile card settles in when the page opens. */
+      .profile {
+        animation: rise-in 600ms ease-out both;
+      }
+
+      .profile-photo {
+        transition: transform 300ms ease, box-shadow 300ms ease;
+      }
+
+      .profile-photo:hover {
+        transform: scale(1.04) rotate(-1.5deg);
+        box-shadow: 0 12px 30px rgb(12 35 64 / 20%);
+      }
+
+      /* "Copied" confirmation pops briefly. */
+      .copy-citation.is-copied {
+        animation: pop 260ms ease-out;
+      }
+
+      @keyframes rise-in {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+      }
+
+      @keyframes menu-in {
+        from {
+          opacity: 0;
+          transform: translateY(-6px);
+        }
+      }
+
+      @keyframes pop {
+        50% {
+          transform: scale(1.08);
+        }
+      }
+
+      /* Hidden instantly; only the reveal is animated. */
+      .js-reveal .content-section.reveal {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+
+      .js-reveal .content-section.reveal.is-visible {
+        opacity: 1;
+        transform: none;
+        transition: opacity 600ms ease, transform 600ms ease;
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -559,6 +1163,22 @@
         *::after {
           transition-duration: 0.01ms !important;
         }
+
+        .publication-item:hover,
+        .publication-item:focus-within,
+        .field-moment:hover,
+        .presentation:hover,
+        .research-area:hover,
+        .field-moment:hover > img,
+        .profile-photo:hover {
+          transform: none;
+        }
+
+        .profile,
+        .main-nav.is-open,
+        .copy-citation.is-copied {
+          animation: none;
+        }
       }
     </style>
   </head>
@@ -570,11 +1190,15 @@
           <span class="brand-mark" aria-hidden="true">TP</span>
           <span>Tapish Pawar</span>
         </a>
-        <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+          <span class="nav-toggle-icon" aria-hidden="true"></span>
+          Menu
+        </button>
+        <nav class="main-nav" id="main-nav" aria-label="Main navigation">
           <a href="#home">Bio</a>
           <a href="#research">Research</a>
           <a href="#publications">Publications</a>
-          <a href="#fun">Fun part</a>
+          <a href="#fun">Beyond the lab</a>
           <a href="#contact">Contact</a>
         </nav>
       </div>
@@ -582,7 +1206,7 @@
 
     <div class="page-shell">
       <aside class="profile" aria-label="Profile">
-        <img class="profile-photo" src="tapish-pawar-avatar.jpg" alt="Tapish Pawar" width="200" height="200">
+        <img decoding="async" class="profile-photo" src="tapish-pawar-avatar.jpg" alt="Tapish Pawar" width="200" height="200">
         <h1>Tapish Pawar</h1>
         <p class="profile-role">Plant pathology researcher<br>Crop disease and resilience</p>
         <p class="affiliation">
@@ -622,6 +1246,10 @@
             disease resistance, cotton begomoviruses, microbial biocontrol, and
             machine learning for plant disease classification.
           </p>
+          <figure class="field-moment bio-banner">
+            <img decoding="async" src="wheat-field-banner.jpg" alt="Tapish Pawar in a Jackrabbits T-shirt and bucket hat, kneeling among heading wheat in a field trial" width="961" height="496">
+            <figcaption>In the wheat field trials at South Dakota State University.</figcaption>
+          </figure>
           <div class="bio-group">
             <h3>Education</h3>
             <ul class="bio-list">
@@ -644,12 +1272,12 @@
             <ul class="bio-list">
               <li class="bio-entry">
                 <h4>Graduate Research Assistant</h4>
-                <p class="bio-entry-meta">Plant Pathology Lab, South Dakota State University · August 2024–Present</p>
+                <p class="bio-entry-meta">Ameen Lab (Plant Pathology), South Dakota State University · August 2024–Present</p>
                 <p class="bio-entry-description">Study bacterial leaf streak resistance in durum wheat by combining field and greenhouse phenotyping, genomic analysis, image-based disease assessment, and deep-learning classification.</p>
               </li>
               <li class="bio-entry">
                 <h4>Research Associate I</h4>
-                <p class="bio-entry-meta">Plant Pathology Lab, South Dakota State University · July 2023–June 2024</p>
+                <p class="bio-entry-meta">Ameen Lab (Plant Pathology), South Dakota State University · July 2023–June 2024</p>
                 <p class="bio-entry-description">Screened wheat genotypes for rust and bacterial leaf streak resistance and supported lab and greenhouse research.</p>
               </li>
               <li class="bio-entry">
@@ -659,16 +1287,91 @@
               </li>
             </ul>
           </div>
+          <div class="bio-group">
+            <h3>Honors and awards</h3>
+            <ul class="bio-list">
+              <li class="bio-entry">
+                <h4>Edgar S. McFadden Graduate Student Scholarship</h4>
+                <p class="bio-entry-meta">South Dakota State University · 2026–2027</p>
+              </li>
+              <li class="bio-entry">
+                <h4>Travel Award</h4>
+                <p class="bio-entry-meta">APS Plant Health 2026 · Providence, Rhode Island · 2026</p>
+              </li>
+              <li class="bio-entry">
+                <h4>Student Oral Presentation Competition, Second Place</h4>
+                <p class="bio-entry-meta">APS North Central Division Meeting · Brookings, South Dakota · 2025</p>
+              </li>
+              <li class="bio-entry">
+                <h4>Graduate Student Travel Award</h4>
+                <p class="bio-entry-meta">APS North Central Division Meeting · Brookings, South Dakota · 2025</p>
+              </li>
+            </ul>
+          </div>
+          <div class="bio-group">
+            <h3>Leadership and service</h3>
+            <ul class="bio-list">
+              <li class="bio-entry">
+                <h4>President, AHPS Graduate Student Association</h4>
+                <p class="bio-entry-meta">Agronomy, Horticulture &amp; Plant Science, South Dakota State University · 2026–2027</p>
+              </li>
+              <li class="bio-entry">
+                <h4>Vice Chair, Molecular Phytopathology Committee</h4>
+                <p class="bio-entry-meta">American Phytopathological Society (APS)</p>
+              </li>
+              <li class="bio-entry">
+                <h4>Student Editor, PAU Magazine</h4>
+                <p class="bio-entry-meta">Punjab Agricultural University · 2018–2019</p>
+              </li>
+            </ul>
+          </div>
         </section>
 
         <section class="content-section" id="research">
           <p class="section-kicker">Research</p>
           <h2>Research interests</h2>
-          <ul class="research-interests">
-            <li>Host resistance to bacterial and fungal diseases of wheat and barley</li>
-            <li>Image-based and deep learning phenotyping of plant disease</li>
-            <li>Pathogen genomics</li>
-          </ul>
+          <div class="research-areas">
+            <article class="research-area research-area--wide">
+              <div class="research-area-text">
+                <h3>Host resistance in wheat and barley</h3>
+                <p>
+                  I look for genetic resistance that breeders can use against
+                  bacterial and fungal diseases of small grains. My Ph.D. work
+                  focuses on bacterial leaf streak (BLS) in durum wheat, which I
+                  screen in field and greenhouse trials. In barley, I have mapped
+                  resistance to spot blotch and bacterial leaf streak with
+                  genome-wide association studies in the interspecific CMPP
+                  population, and screened elite spring barley for resistance to
+                  Fusarium head blight.
+                </p>
+              </div>
+              <div class="research-strip">
+                <figure class="research-photo">
+                  <img decoding="async" src="bls-field-nursery.jpg" alt="BLS-inoculated wheat nursery with green resistant plants on the left and yellowing, streaked susceptible plants on the right" width="266" height="356" loading="lazy">
+                  <figcaption>BLS-inoculated field nursery: resistant lines stay green while susceptible lines show streaking and drying leaves.</figcaption>
+                </figure>
+                <figure class="research-photo">
+                  <img decoding="async" src="bls-leaf-streak.jpg" alt="Wheat leaf held between fingers showing long tan bacterial leaf streak lesions" width="280" height="373" loading="lazy">
+                  <figcaption>Bacterial leaf streak lesions on a wheat leaf, caused by <i>Xanthomonas translucens</i>.</figcaption>
+                </figure>
+                <figure class="research-photo">
+                  <img decoding="async" src="spot-blotch-barley.jpg" alt="Barley leaves covered in dark-brown spot blotch lesions surrounded by yellow chlorosis" width="600" height="800" loading="lazy">
+                  <figcaption>Spot blotch on barley: dark-brown lesions with yellow chlorosis, caused by <i>Bipolaris sorokiniana</i>.</figcaption>
+                </figure>
+              </div>
+            </article>
+            <article class="research-area research-area--full">
+              <h3>Image-based disease phenotyping</h3>
+              <p>
+                Scoring disease by eye is slow and varies between raters. I use
+                leaf images and deep-learning classification to measure disease
+                severity more quickly and consistently, so that large screening
+                trials can be rated on the same scale. In a comparison of five
+                deep-learning models on 3,870 wheat leaf images, ResNet50
+                classified eight disease classes, including BLS, most accurately.
+              </p>
+            </article>
+          </div>
           <article class="featured-study">
             <div>
               <p class="section-kicker">Featured publication</p>
@@ -684,6 +1387,33 @@
               <a href="https://doi.org/10.1094/pdis-04-26-0761-re" target="_blank" rel="noreferrer">Read publication ↗</a>
             </div>
           </article>
+          <figure class="field-moment">
+            <video controls muted loop playsinline preload="metadata" poster="bls-field-inoculation.jpg">
+              <source src="bls-field-inoculation.mp4" type="video/mp4">
+              Your browser does not support embedded video.
+            </video>
+            <figcaption>
+              <span class="section-kicker">From the field</span>
+              Our first field inoculation of bacterial leaf streak (BLS): the team inoculating the wheat plots together.
+            </figcaption>
+          </figure>
+          <div class="field-photos lab-pair">
+            <figure class="field-moment lab-feature">
+              <img decoding="async" src="ameen-lab-team.jpg" alt="Nine members of the Ameen Lab standing together in a hallway with framed photographs behind them" width="1120" height="840" loading="lazy">
+              <figcaption>
+                <img class="lab-logo" src="ameen-lab-logo.png" alt="Ameen Lab Plant Pathology logo" width="180" height="162" loading="lazy">
+                <span>
+                  <span class="section-kicker">Ameen Lab</span>
+                  The Ameen Lab plant pathology team at South Dakota State University,
+                  led by <a href="https://www.sdstate.edu/directory/gazala-ameen" target="_blank" rel="noreferrer">Dr. Gazala Ameen</a>.
+                </span>
+              </figcaption>
+            </figure>
+            <figure class="field-moment">
+              <img decoding="async" src="field-with-advisor.jpg" alt="Tapish Pawar smiling in the wheat plots with advisor Dr. Gazala Ameen" width="600" height="800" loading="lazy">
+              <figcaption>In the BLS field plots with my advisor, <a href="https://www.sdstate.edu/directory/gazala-ameen" target="_blank" rel="noreferrer">Dr. Gazala Ameen</a>.</figcaption>
+            </figure>
+          </div>
         </section>
 
         <section class="content-section" id="publications">
@@ -692,69 +1422,252 @@
           <p class="lead">Articles and preprints related to plant pathology and crop disease.</p>
           <ul class="publication-list">
             <li class="publication-item">
-              <div>
-                <a class="publication-title" href="https://doi.org/10.21203/rs.3.rs-10529722/v1" target="_blank" rel="noreferrer">
-                  Integrative GWAS and Haplotype-Based Dissection Identify Additive Genomic Hotspots conferring Bacterial Leaf Streak Resistance in the Barley Interspecific Cytonuclear Multi-Parent Population (CMPP)
-                </a>
-                <p class="publication-venue">Research Square · Preprint</p>
+              <p class="citation">
+                <span class="citation-authors">Ahmad, M., Sivakumar, T., Tilstra, J., <strong class="me">Pawar, T.</strong>, Beery, A., Bodenheimer, S., Yang, S., Solanki, S., Fridman, E., &amp; Ameen, G.</span>
+                <span class="citation-year">(2026).</span>
+                <span class="citation-title">Integrative GWAS and haplotype-based dissection identify additive genomic hotspots conferring bacterial leaf streak resistance in the barley interspecific cytonuclear multi-parent population (CMPP).</span>
+                <span class="citation-source"><i>Research Square</i> [Preprint, version 1].</span>
+              </p>
+              <div class="citation-actions">
+                <span class="pub-tag pub-tag--preprint">Preprint</span>
+                <a class="doi-link" href="https://doi.org/10.21203/rs.3.rs-10529722/v1" target="_blank" rel="noreferrer">DOI: 10.21203/rs.3.rs-10529722/v1</a>
+                <button class="copy-citation" type="button" aria-live="polite" data-doi="10.21203/rs.3.rs-10529722/v1">Copy citation</button>
               </div>
-              <span class="publication-year">2026</span>
             </li>
             <li class="publication-item">
-              <div>
-                <a class="publication-title" href="https://doi.org/10.1094/pdis-04-26-0761-re" target="_blank" rel="noreferrer">
-                  Screening for Fusarium Head Blight (FHB) Resistance in Elite Spring Barley
-                </a>
-                <p class="publication-venue">Plant Disease</p>
+              <p class="citation">
+                <span class="citation-authors"><strong class="me">Pawar, T.</strong>, Fathima, T., Tilstra, J., Sehgal, S. K., Graham, C., Gonzalez Hernandez, J. L., Ali, S., Solanki, S., &amp; Ameen, G.</span>
+                <span class="citation-year">(2026).</span>
+                <span class="citation-title">Screening for Fusarium head blight (FHB) resistance in elite spring barley.</span>
+                <span class="citation-source"><i>Plant Disease</i>. Advance online publication.</span>
+              </p>
+              <div class="citation-actions">
+                <span class="pub-tag pub-tag--article">Journal article</span>
+                <a class="doi-link" href="https://doi.org/10.1094/PDIS-04-26-0761-RE" target="_blank" rel="noreferrer">DOI: 10.1094/PDIS-04-26-0761-RE</a>
+                <button class="copy-citation" type="button" aria-live="polite" data-doi="10.1094/PDIS-04-26-0761-RE">Copy citation</button>
               </div>
-              <span class="publication-year">2026</span>
             </li>
             <li class="publication-item">
-              <div>
-                <a class="publication-title" href="https://doi.org/10.1007/s42360-024-00758-6" target="_blank" rel="noreferrer">
-                  Distribution of cotton leaf curl virus species/strain and characterization of associated satellite molecules in Gossypium hirsutum
-                </a>
-                <p class="publication-venue">Indian Phytopathology</p>
+              <p class="citation">
+                <span class="citation-authors">Ahmad, M., <strong class="me">Pawar, T.</strong>, Solanki, S., Glover, K., &amp; Ameen, G.</span>
+                <span class="citation-year">(2025).</span>
+                <span class="citation-title">An effective method for bacterial leaf streak disease severity estimation in controlled and field environments in small grains.</span>
+                <span class="citation-source"><i>Research Square</i> [Preprint, version 1].</span>
+              </p>
+              <div class="citation-actions">
+                <span class="pub-tag pub-tag--preprint">Preprint</span>
+                <a class="doi-link" href="https://doi.org/10.21203/rs.3.rs-8098615/v1" target="_blank" rel="noreferrer">DOI: 10.21203/rs.3.rs-8098615/v1</a>
+                <button class="copy-citation" type="button" aria-live="polite" data-doi="10.21203/rs.3.rs-8098615/v1">Copy citation</button>
               </div>
-              <span class="publication-year">2024</span>
             </li>
             <li class="publication-item">
-              <div>
-                <a class="publication-title" href="https://doi.org/10.5958/2249-8788.2022.00027.0" target="_blank" rel="noreferrer">
-                  Impact of Priaxor (fluxapyroxad 167g/l + pyraclostrobin 333g/l SC) on fungal foliar leaf spots in upland cotton
-                </a>
-                <p class="publication-venue">Plant Disease Research</p>
+              <p class="citation">
+                <span class="citation-authors"><strong class="me">Pawar, T.</strong>, Sharma, S., Arora, R. K., &amp; Biswas, K. K.</span>
+                <span class="citation-year">(2024).</span>
+                <span class="citation-title">Distribution of cotton leaf curl virus species/strain and characterization of associated satellite molecules in <i>Gossypium hirsutum</i>.</span>
+                <span class="citation-source"><i>Indian Phytopathology</i>, <i>77</i>, 815–823.</span>
+              </p>
+              <div class="citation-actions">
+                <span class="pub-tag pub-tag--article">Journal article</span>
+                <a class="doi-link" href="https://doi.org/10.1007/s42360-024-00758-6" target="_blank" rel="noreferrer">DOI: 10.1007/s42360-024-00758-6</a>
+                <button class="copy-citation" type="button" aria-live="polite" data-doi="10.1007/s42360-024-00758-6">Copy citation</button>
               </div>
-              <span class="publication-year">2022</span>
             </li>
             <li class="publication-item">
-              <div>
-                <a class="publication-title" href="https://doi.org/10.5958/2249-8788.2022.00018.x" target="_blank" rel="noreferrer">
-                  Evaluation of the bioformulation of potent strains of Trichoderma spp. and Pseudomonas spp. against Fusarial wilt of bottle gourd (Lagenaria siceraria)
-                </a>
-                <p class="publication-venue">Plant Disease Research</p>
+              <p class="citation">
+                <span class="citation-authors"><strong class="me">Pawar, T.</strong>, Arora, R. K., Walia, G. S., &amp; Sharma, S.</span>
+                <span class="citation-year">(2022).</span>
+                <span class="citation-title">Effect of sowing period and disease severity grades of cotton leaf curl disease (CLCuD) on phenotypic characters of the American cotton in Punjab.</span>
+                <span class="citation-source"><i>Journal of Mycology and Plant Pathology</i>, <i>52</i>(2), 135–144.</span>
+              </p>
+              <div class="citation-actions">
+                <span class="pub-tag pub-tag--article">Journal article</span>
+                <button class="copy-citation" type="button" aria-live="polite">Copy citation</button>
               </div>
-              <span class="publication-year">2022</span>
             </li>
             <li class="publication-item">
-              <div>
-                <a class="publication-title" href="https://doi.org/10.5958/2249-8788.2021.00031.7" target="_blank" rel="noreferrer">
-                  Screening of American cotton (Gossypium hirsutum) genotypes against cotton leaf curl associated begomoviruses
-                </a>
-                <p class="publication-venue">Plant Disease Research</p>
+              <p class="citation">
+                <span class="citation-authors">Buttar, D. S., <strong class="me">Pawar, T.</strong>, &amp; Grewal, I. S.</span>
+                <span class="citation-year">(2022).</span>
+                <span class="citation-title">Impact of Priaxor (fluxapyroxad 167 g/L + pyraclostrobin 333 g/L SC) on fungal foliar leaf spots in upland cotton.</span>
+                <span class="citation-source"><i>Plant Disease Research</i>, <i>37</i>(2), 164–168.</span>
+              </p>
+              <div class="citation-actions">
+                <span class="pub-tag pub-tag--article">Journal article</span>
+                <a class="doi-link" href="https://doi.org/10.5958/2249-8788.2022.00027.0" target="_blank" rel="noreferrer">DOI: 10.5958/2249-8788.2022.00027.0</a>
+                <button class="copy-citation" type="button" aria-live="polite" data-doi="10.5958/2249-8788.2022.00027.0">Copy citation</button>
               </div>
-              <span class="publication-year">2021</span>
+            </li>
+            <li class="publication-item">
+              <p class="citation">
+                <span class="citation-authors">Ruchika, Singh, N., Buttar, D. S., Choudhary, A. K., &amp; <strong class="me">Pawar, T.</strong></span>
+                <span class="citation-year">(2022).</span>
+                <span class="citation-title">Evaluation of the bioformulation of potent strains of <i>Trichoderma</i> spp. and <i>Pseudomonas</i> spp. against Fusarial wilt of bottle gourd (<i>Lagenaria siceraria</i>).</span>
+                <span class="citation-source"><i>Plant Disease Research</i>, <i>37</i>(2), 99–109.</span>
+              </p>
+              <div class="citation-actions">
+                <span class="pub-tag pub-tag--article">Journal article</span>
+                <a class="doi-link" href="https://doi.org/10.5958/2249-8788.2022.00018.x" target="_blank" rel="noreferrer">DOI: 10.5958/2249-8788.2022.00018.x</a>
+                <button class="copy-citation" type="button" aria-live="polite" data-doi="10.5958/2249-8788.2022.00018.x">Copy citation</button>
+              </div>
+            </li>
+            <li class="publication-item">
+              <p class="citation">
+                <span class="citation-authors"><strong class="me">Pawar, T.</strong>, Arora, R. K., Sharma, S., Singh, P., &amp; Singh, M.</span>
+                <span class="citation-year">(2021).</span>
+                <span class="citation-title">Screening of American cotton (<i>Gossypium hirsutum</i>) genotypes against cotton leaf curl associated begomoviruses in Punjab.</span>
+                <span class="citation-source"><i>Plant Disease Research</i>, <i>36</i>(2), 196–201.</span>
+              </p>
+              <div class="citation-actions">
+                <span class="pub-tag pub-tag--article">Journal article</span>
+                <a class="doi-link" href="https://doi.org/10.5958/2249-8788.2021.00031.7" target="_blank" rel="noreferrer">DOI: 10.5958/2249-8788.2021.00031.7</a>
+                <button class="copy-citation" type="button" aria-live="polite" data-doi="10.5958/2249-8788.2021.00031.7">Copy citation</button>
+              </div>
+            </li>
+            <li class="publication-item">
+              <p class="citation">
+                <span class="citation-authors">Sharma, S., Sharma, V. K., &amp; <strong class="me">Pawar, T.</strong></span>
+                <span class="citation-year">(2021).</span>
+                <span class="citation-title">Natural occurrence of Euphorbia leaf curl virus (EuLCV) infecting zinnia in India.</span>
+                <span class="citation-source"><i>Indian Journal of Ecology</i>, <i>48</i>, 1798–1801.</span>
+              </p>
+              <div class="citation-actions">
+                <span class="pub-tag pub-tag--article">Journal article</span>
+                <button class="copy-citation" type="button" aria-live="polite">Copy citation</button>
+              </div>
             </li>
           </ul>
-          <a class="section-link" href="https://scholar.google.com/scholar?q=%22Tapish+Pawar%22" target="_blank" rel="noreferrer">
-            Search Tapish Pawar on Google Scholar ↗
+          <a class="section-link" href="https://scholar.google.com/citations?user=XZpXRLUAAAAJ&amp;hl=en" target="_blank" rel="noreferrer">
+            Tapish Pawar on Google Scholar ↗
           </a>
+          <div class="bio-group">
+            <h3>Conference presentations</h3>
+            <div class="presentation-list">
+            <article class="presentation presentation--landscape">
+              <img decoding="async" src="plant-health-2026-talk.jpg" alt="Tapish Pawar presenting at a podium beside a slide titled Mapping Bacterial Leaf Streak Resistance in Durum Wheat at Plant Health 2026" width="800" height="600" loading="lazy">
+              <div class="presentation-body">
+                <p class="section-kicker">Oral presentation · August 2026</p>
+                <h4>Mapping Bacterial Leaf Streak Resistance in Durum Wheat</h4>
+                <p class="presentation-venue">Plant Health 2026 (APS Annual Meeting) · Providence, Rhode Island · August 1–4, 2026</p>
+                <ul class="award-chips" aria-label="Activities">
+                  <li>Travel Award</li>
+                  <li>Plant Diagnostics Bowl · Team Midwest Fun-Guys</li>
+                </ul>
+                <p class="presentation-summary">At the American Phytopathological Society's annual meeting, I presented my research on mapping BLS resistance in durum wheat and competed in the Plant Diagnostics Bowl with Team Midwest Fun-Guys. <a href="https://www.sdstate.edu/directory/gazala-ameen" target="_blank" rel="noreferrer">Dr. Gazala Ameen</a> and my co-advisor, Dr. Shyam Solanki, were there from SDSU too.</p>
+              </div>
+            </article>
+            <article class="presentation presentation--landscape">
+              <img decoding="async" src="nc-aps-2026-poster.jpg" alt="Tapish Pawar standing beside a poster on deep learning-based classification of wheat foliar diseases with a focus on bacterial leaf streak" width="1400" height="788" loading="lazy">
+              <div class="presentation-body">
+                <p class="section-kicker">Poster · 2026</p>
+                <h4>Deep Learning-Based Classification of Wheat Foliar Diseases with a Focus on Bacterial Leaf Streak</h4>
+                <p class="presentation-authors"><strong>Tapish Pawar</strong>, Carolyn Heisel, Maitiniyazi Maimaitijiang, Kishore Chittem, Shyam Solanki, and <a href="https://www.sdstate.edu/directory/gazala-ameen" target="_blank" rel="noreferrer">Gazala Ameen</a></p>
+                <p class="presentation-venue">APS North Central Division Meeting (NC APS 2026) · Michigan State University, East Lansing · June 10–12, 2026</p>
+                <p class="presentation-summary">Visual disease scoring is slow and varies between raters. Using 3,870 field, greenhouse and public images across eight classes, I compared five transfer-learning models with an SVM baseline. ResNet50 performed best (weighted F1 of 0.953), BLS detection was near-perfect, and Grad-CAM maps showed the model focusing on the lesions. A U-Net segmentation step extends the workflow toward pixel-based severity estimates.</p>
+              </div>
+            </article>
+            <article class="presentation">
+              <img decoding="async" src="bls-conference-2026-talk.jpg" alt="Tapish Pawar speaking at a podium with a table of BLS resistance SNPs on the screen above" width="480" height="640" loading="lazy">
+              <div class="presentation-body">
+                <p class="section-kicker">Poster and lightning talk · March 2026</p>
+                <h4>Discovering Host Resistance Against Bacterial Leaf Streak Disease in Global Durum Wheat Panel</h4>
+                <p class="presentation-venue">Bacterial Leaf Streak Research Initiative · South Dakota State University, Brookings · March 30–31, 2026</p>
+                <p class="presentation-summary">I shared multi-trait genome-wide association results for BLS resistance in durum wheat. Several marker–trait associations were detected consistently across models, many loci were shared between adult plant resistance and disease progress (AUDPC), and seedling resistance appeared to be genetically distinct.</p>
+              </div>
+            </article>
+            <article class="presentation">
+              <img decoding="async" src="nc-aps-2025-awards.jpg" alt="Tapish Pawar holding up the Student Oral Presentation Competition and Graduate Student Travel Award certificates" width="480" height="640" loading="lazy">
+              <div class="presentation-body">
+                <p class="section-kicker">Oral presentation · June 2025</p>
+                <h4>Discovering Resistance to Bacterial Leaf Streak Disease in Global Durum Wheat Panel</h4>
+                <p class="presentation-venue">APS North Central Division Meeting · Brookings, South Dakota · June 9–11, 2025</p>
+                <ul class="award-chips" aria-label="Awards">
+                  <li>Student Oral Presentation Competition · Second Place</li>
+                  <li>Graduate Student Travel Award</li>
+                </ul>
+                <p class="presentation-summary">I presented my Ph.D. research on finding bacterial leaf streak resistance in a global durum wheat panel, placed second in the student oral presentation competition, and received a graduate student travel award from the APS North Central Division.</p>
+              </div>
+            </article>
+            <article class="presentation presentation--landscape">
+              <img decoding="async" src="bls-meeting-2025-talk.jpg" alt="Tapish Pawar presenting a slide on the global distribution of Xanthomonas translucens and durum wheat production" width="800" height="600" loading="lazy">
+              <div class="presentation-body">
+                <p class="section-kicker">Oral presentation · April 2025</p>
+                <h4>Mapping for Resistance to Bacterial Leaf Streak Disease in Global Durum Wheat Panel</h4>
+                <p class="presentation-venue">Bacterial Leaf Streak Research Initiative · University of Minnesota, St. Paul · April 9–11, 2025</p>
+                <p class="presentation-summary">My first BLS meeting. I presented my research on bacterial leaf streak in durum wheat, starting with where <i>Xanthomonas translucens</i> occurs worldwide and how that overlaps with durum wheat production.</p>
+              </div>
+            </article>
+            <article class="presentation">
+              <img decoding="async" src="grad-research-day-2025-poster.jpg" alt="Tapish Pawar standing beside the bacterial leaf streak durum wheat poster at SDSU Graduate Research Day 2025" width="480" height="640" loading="lazy">
+              <div class="presentation-body">
+                <p class="section-kicker">Poster · 2025</p>
+                <h4>Unraveling Resistance to Bacterial Leaf Streak Disease in Global Durum Wheat Panel</h4>
+                <p class="presentation-authors"><strong>Tapish Pawar</strong>, Muhammad Ahmad, Chunki Lau, Shyam Solanki, Karl D. Glover, Jeffrey D. Boehm, Filippo Bassi, and <a href="https://www.sdstate.edu/directory/gazala-ameen" target="_blank" rel="noreferrer">Gazala Ameen</a></p>
+                <p class="presentation-venue">SDSU Graduate School Research Day · South Dakota State University, Brookings · April 2025</p>
+                <p class="presentation-summary">Greenhouse screening of a global durum wheat panel for bacterial leaf streak, caused by <i>Xanthomonas translucens</i>, combined with genome-wide association analysis to find SNP markers linked to resistance for use in breeding.</p>
+              </div>
+            </article>
+            <article class="presentation">
+              <img decoding="async" src="nc-aps-2024-poster.jpg" alt="Tapish Pawar standing beside poster 60 on spot blotch resistance in barley at NC APS 2024" width="480" height="640" loading="lazy">
+              <div class="presentation-body">
+                <p class="section-kicker">Poster · 2024</p>
+                <h4>Genomic Regions Associated with Spot Blotch (SB) Resistance in Barley in the Interspecific Cytonuclear Multi-Parent Population (CMPP)</h4>
+                <p class="presentation-authors"><strong>Tapish Pawar</strong>, Joseph Tilstra, Muhammad Ahmad, Avital Beery, Schewach Bodenheimer, Shengming Yang, Shyam Solanki, Eyal Fridman, and <a href="https://www.sdstate.edu/directory/gazala-ameen" target="_blank" rel="noreferrer">Gazala Ameen</a></p>
+                <p class="presentation-venue">APS North Central Division Meeting (NC APS 2024) · Manhattan, Kansas · June 10–12, 2024</p>
+                <p class="presentation-summary">Genome-wide association mapping of seedling resistance to spot blotch (<i>Bipolaris sorokiniana</i>) in 352 CMPP barley lines identified four marker–trait associations on chromosomes 1H, 5H, 6H and 7H.</p>
+              </div>
+            </article>
+            </div>
+          </div>
         </section>
 
         <section class="content-section" id="fun">
-          <p class="section-kicker">Beyond research</p>
-          <h2>Fun part</h2>
-          <p class="lead">A little more about my interests outside research will be added here.</p>
+          <p class="section-kicker">Life outside research</p>
+          <h2>Beyond the lab</h2>
+          <div class="field-photos">
+            <figure class="field-moment">
+              <img decoding="async" src="kitchen-garden-sowing.jpg" alt="Tapish Pawar crouching in freshly prepared soil, sowing seeds in a community garden at sunset" width="800" height="1067" loading="lazy">
+              <figcaption>
+                <span class="section-kicker">Kitchen gardening</span>
+                Outside the lab and the research plots, I love kitchen gardening at a
+                community garden. Here I am sowing seeds at sunset.
+              </figcaption>
+            </figure>
+            <figure class="field-moment">
+              <img decoding="async" src="tree-of-life.jpg" alt="Tapish Pawar leaning against a museum tree of life display beside a label reading You are here, Homo sapiens" width="800" height="1066" loading="lazy">
+              <figcaption>
+                <span class="section-kicker">You are here</span>
+                One small twig on the tree of life. Plants, fungi and the rest of us
+                all share the same branches.
+              </figcaption>
+            </figure>
+            <figure class="field-moment">
+              <img decoding="async" src="wisconsin-lake-labmates.jpg" alt="Tapish Pawar with five lab mates on a pier at Lake Mendota, with sailboats and blue sky behind them" width="600" height="800" loading="lazy">
+              <figcaption>
+                <span class="section-kicker">On the way home</span>
+                With lab mates at Lake Mendota, University of Wisconsin–Madison,
+                on the way back from NC APS 2026 at Michigan State University.
+              </figcaption>
+            </figure>
+          </div>
+          <div class="field-photos wide-pair">
+          <figure class="field-moment wide-photo">
+            <img decoding="async" src="ahps-gsa.jpg" alt="Tapish Pawar with members of the AHPS Graduate Student Association and the department head, standing together on the grass in a park on a summer evening" width="1024" height="576" loading="lazy">
+            <figcaption>
+              <span class="section-kicker">Graduate Student Association</span>
+              With the AHPS Graduate Student Association, where I serve as president
+              for 2026–2027, and the head of our department at a summer get-together.
+            </figcaption>
+          </figure>
+          <figure class="field-moment wide-photo">
+            <img decoding="async" src="newport-beach.jpg" alt="Tapish Pawar and Nikhil smiling in sunglasses at the edge of the sea in Newport, Rhode Island" width="800" height="600" loading="lazy">
+            <figcaption>
+              <span class="section-kicker">Newport, Rhode Island</span>
+              After Plant Health 2026 in Providence, a trip to the coast at Newport
+              with Nikhil.
+            </figcaption>
+          </figure>
+          </div>
         </section>
 
         <section class="content-section" id="contact">
@@ -763,13 +1676,17 @@
           <div class="contact-panel">
             <p>
               For questions about plant pathology, publications, or research
-              collaborations, please write to the department at the address below.
+              collaborations, email me or write to the department at the address below.
             </p>
             <address class="contact-address">
               <strong>Agronomy, Horticulture, &amp; Plant Science</strong><br>
               Berg Agricultural Hall 263<br>
               Brookings, SD 57007
             </address>
+            <p class="contact-email">
+              <a href="mailto:Tapish.pawar@jacks.sdstate.edu">Tapish.pawar@jacks.sdstate.edu</a>
+              <button class="copy-citation copy-email" type="button" aria-live="polite" data-copy="Tapish.pawar@jacks.sdstate.edu">Copy email</button>
+            </p>
             <p>
               <a href="https://www.sdstate.edu/directory/tapish-pawar" target="_blank" rel="noreferrer">
                 SDSU directory profile ↗
@@ -785,6 +1702,174 @@
     </div>
     <script>
       document.querySelector("#year").textContent = new Date().getFullYear();
+
+      const nav = document.querySelector("#main-nav");
+      const navToggle = document.querySelector(".nav-toggle");
+      const navLinks = [...nav.querySelectorAll('a[href^="#"]')];
+      const narrowScreen = window.matchMedia("(max-width: 699.98px)");
+
+      // Fade each section in the first time it scrolls into view.
+      const motionOK = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (motionOK && "IntersectionObserver" in window) {
+        const revealSections = document.querySelectorAll(".content-section");
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -10% 0px" }
+        );
+        // Sections already on screen at load show at once, without animating.
+        revealSections.forEach((section) => {
+          const top = section.getBoundingClientRect().top;
+          if (top < window.innerHeight * 0.9) return;
+          section.classList.add("reveal");
+          revealObserver.observe(section);
+        });
+        document.documentElement.classList.add("js-reveal");
+      }
+
+      // Copy a publication's citation as plain text.
+      function copyText(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+          return navigator.clipboard.writeText(text);
+        }
+        // Fallback for older browsers and pages not served over HTTPS.
+        const field = document.createElement("textarea");
+        field.value = text;
+        field.setAttribute("readonly", "");
+        field.style.position = "fixed";
+        field.style.opacity = "0";
+        document.body.append(field);
+        field.select();
+        const ok = document.execCommand("copy");
+        field.remove();
+        return ok ? Promise.resolve() : Promise.reject(new Error("Copy failed"));
+      }
+
+      document.querySelectorAll(".copy-citation").forEach((button) => {
+        const label = button.textContent;
+        button.addEventListener("click", () => {
+          // Email button copies its address; citation buttons build the citation.
+          const citation = button.dataset.copy
+            ? button.previousElementSibling
+            : button.closest(".publication-item").querySelector(".citation");
+          const text = button.dataset.copy
+            ? button.dataset.copy
+            : citation.textContent.replace(/\s+/g, " ").trim() +
+              (button.dataset.doi ? " https://doi.org/" + button.dataset.doi : "");
+          copyText(text)
+            .then(() => {
+              button.textContent = "Copied";
+              button.classList.add("is-copied");
+            })
+            .catch(() => {
+              // Select the citation so it can be copied by hand.
+              window.getSelection().selectAllChildren(citation);
+              button.textContent = "Press Ctrl+C to copy";
+            })
+            .finally(() => {
+              clearTimeout(button.resetTimer);
+              button.resetTimer = setTimeout(() => {
+                button.textContent = label;
+                button.classList.remove("is-copied");
+              }, 2000);
+            });
+        });
+      });
+
+      // Collapsible menu for narrow screens.
+      function setMenuOpen(open) {
+        nav.classList.toggle("is-open", open);
+        navToggle.setAttribute("aria-expanded", String(open));
+      }
+
+      navToggle.addEventListener("click", () => {
+        setMenuOpen(navToggle.getAttribute("aria-expanded") !== "true");
+      });
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => setMenuOpen(false));
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && nav.classList.contains("is-open")) {
+          setMenuOpen(false);
+          navToggle.focus();
+        }
+      });
+
+      document.addEventListener("click", (event) => {
+        if (nav.classList.contains("is-open") && !event.target.closest(".header-inner")) {
+          setMenuOpen(false);
+        }
+      });
+
+      narrowScreen.addEventListener("change", () => setMenuOpen(false));
+
+      // Highlight the link for the section currently on screen.
+      const sections = navLinks
+        .map((link) => document.querySelector(link.getAttribute("href")))
+        .filter(Boolean);
+      const lastSection = sections[sections.length - 1];
+      const footer = document.querySelector(".footer");
+      const inBand = new Set();
+      let footerVisible = false;
+      let bandTop = 0;
+
+      function setActiveLink(id) {
+        navLinks.forEach((link) => {
+          if (link.getAttribute("href") === "#" + id) {
+            link.setAttribute("aria-current", "location");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        });
+      }
+
+      function updateActiveLink() {
+        // The lowest section in the band is the one whose heading most recently
+        // scrolled into view. The last section is short, so it becomes active
+        // once the footer shows.
+        let active = footerVisible
+          ? lastSection
+          : sections.filter((section) => inBand.has(section)).pop();
+        // Between sections, or above the first one (the profile card on
+        // phones), keep the section the reader last scrolled past.
+        if (!active) {
+          active =
+            sections.filter((section) => section.getBoundingClientRect().top < bandTop).pop() ||
+            sections[0];
+        }
+        setActiveLink(active.id);
+      }
+
+      if ("IntersectionObserver" in window) {
+        // A band from just under the sticky header to 40% down the screen.
+        bandTop = document.querySelector(".site-header").offsetHeight + 8;
+        const sectionObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) inBand.add(entry.target);
+              else inBand.delete(entry.target);
+            });
+            updateActiveLink();
+          },
+          { rootMargin: `-${bandTop}px 0px -60% 0px` }
+        );
+        sections.forEach((section) => sectionObserver.observe(section));
+
+        if (footer) {
+          new IntersectionObserver((entries) => {
+            footerVisible = entries[0].isIntersecting;
+            updateActiveLink();
+          }).observe(footer);
+        }
+      }
     </script>
   </body>
 </html>
