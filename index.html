@@ -357,6 +357,34 @@
         background: linear-gradient(110deg, rgb(255 209 0 / 17%), #FFFDF0);
       }
 
+      .field-moment {
+        margin: 22px 0 0;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--card);
+      }
+
+      .field-moment video {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        background: var(--navy);
+      }
+
+      .field-moment figcaption {
+        padding: 14px 18px;
+        color: var(--muted);
+        font-size: 0.86rem;
+        line-height: 1.5;
+      }
+
+      .field-moment figcaption .section-kicker {
+        display: block;
+        margin: 0 0 4px;
+      }
+
       .featured-study h3 {
         margin: 0 0 7px;
         font-family: Georgia, "Times New Roman", serif;
@@ -754,7 +782,17 @@
         <section class="content-section" id="fun">
           <p class="section-kicker">Beyond research</p>
           <h2>Fun part</h2>
-          <p class="lead">A little more about my interests outside research will be added here.</p>
+          <p class="lead">Moments from the field and beyond.</p>
+          <figure class="field-moment">
+            <video controls muted loop playsinline preload="metadata" poster="bls-field-inoculation.jpg">
+              <source src="bls-field-inoculation.mp4" type="video/mp4">
+              Your browser does not support embedded video.
+            </video>
+            <figcaption>
+              <span class="section-kicker">From the field</span>
+              Our first field inoculation of bacterial leaf streak (BLS): the team inoculating the wheat plots together.
+            </figcaption>
+          </figure>
         </section>
 
         <section class="content-section" id="contact">
