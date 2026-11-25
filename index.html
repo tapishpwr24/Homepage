@@ -476,6 +476,58 @@
         font-variant-numeric: tabular-nums;
       }
 
+      .presentation {
+        display: grid;
+        grid-template-columns: 200px minmax(0, 1fr);
+        align-items: start;
+        gap: 22px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--card);
+      }
+
+      .presentation img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 3 / 4;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+
+      .presentation-body {
+        min-width: 0;
+      }
+
+      .presentation h4 {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.15rem;
+        font-weight: 400;
+        line-height: 1.35;
+        text-wrap: balance;
+      }
+
+      .presentation-authors,
+      .presentation-venue,
+      .presentation-summary {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 0.86rem;
+        line-height: 1.55;
+      }
+
+      .presentation-authors strong {
+        color: var(--ink);
+      }
+
+      .presentation-venue {
+        color: var(--blue);
+        font-weight: 650;
+      }
+
       .section-link {
         display: inline-block;
         margin-top: 20px;
@@ -594,6 +646,14 @@
 
         .field-photos {
           grid-template-columns: 1fr;
+        }
+
+        .presentation {
+          grid-template-columns: 1fr;
+        }
+
+        .presentation img {
+          max-width: 260px;
         }
 
         .footer {
@@ -821,6 +881,19 @@
           <a class="section-link" href="https://scholar.google.com/scholar?q=%22Tapish+Pawar%22" target="_blank" rel="noreferrer">
             Search Tapish Pawar on Google Scholar ↗
           </a>
+          <div class="bio-group">
+            <h3>Conference presentations</h3>
+            <article class="presentation">
+              <img src="nc-aps-2024-poster.jpg" alt="Tapish Pawar standing beside poster 60 on spot blotch resistance in barley at NC APS 2024" width="900" height="1200" loading="lazy">
+              <div class="presentation-body">
+                <p class="section-kicker">Poster · 2024</p>
+                <h4>Genomic Regions Associated with Spot Blotch (SB) Resistance in Barley in the Interspecific Cytonuclear Multi-Parent Population (CMPP)</h4>
+                <p class="presentation-authors"><strong>Tapish Pawar</strong>, Joseph Tilstra, Muhammad Ahmad, Avital Beery, Schewach Bodenheimer, Shengming Yang, Shyam Solanki, Eyal Fridman, and <a href="https://www.sdstate.edu/directory/gazala-ameen" target="_blank" rel="noreferrer">Gazala Ameen</a></p>
+                <p class="presentation-venue">APS North Central Division Meeting (NC APS 2024) · Manhattan, Kansas</p>
+                <p class="presentation-summary">Genome-wide association mapping of seedling resistance to spot blotch (<i>Bipolaris sorokiniana</i>) in 352 CMPP barley lines identified four marker–trait associations on chromosomes 1H, 5H, 6H and 7H.</p>
+              </div>
+            </article>
+          </div>
         </section>
 
         <section class="content-section" id="fun">
