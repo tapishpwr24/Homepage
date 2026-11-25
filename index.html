@@ -129,9 +129,128 @@
       }
 
       .main-nav a:hover,
-      .main-nav a:focus-visible {
+      .main-nav a:focus-visible,
+      .main-nav a[aria-current="location"] {
         border-bottom-color: var(--yellow);
         color: var(--blue);
+      }
+
+      .nav-toggle {
+        display: none;
+        align-items: center;
+        gap: 9px;
+        padding: 8px 13px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--card);
+        color: var(--ink);
+        font: inherit;
+        font-size: 0.85rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .nav-toggle:hover {
+        border-color: var(--light-blue);
+      }
+
+      .nav-toggle:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 2px;
+      }
+
+      /* Three-line icon that turns into an X when the menu is open. */
+      .nav-toggle-icon,
+      .nav-toggle-icon::before,
+      .nav-toggle-icon::after {
+        display: block;
+        width: 16px;
+        height: 2px;
+        border-radius: 2px;
+        background: currentColor;
+        transition: transform 150ms ease, background-color 150ms ease;
+      }
+
+      .nav-toggle-icon {
+        position: relative;
+      }
+
+      .nav-toggle-icon::before,
+      .nav-toggle-icon::after {
+        position: absolute;
+        left: 0;
+        content: "";
+      }
+
+      .nav-toggle-icon::before {
+        top: -5px;
+      }
+
+      .nav-toggle-icon::after {
+        top: 5px;
+      }
+
+      .nav-toggle[aria-expanded="true"] .nav-toggle-icon {
+        background-color: transparent;
+      }
+
+      .nav-toggle[aria-expanded="true"] .nav-toggle-icon::before {
+        transform: translateY(5px) rotate(45deg);
+      }
+
+      .nav-toggle[aria-expanded="true"] .nav-toggle-icon::after {
+        transform: translateY(-5px) rotate(-45deg);
+      }
+
+      /* Below 700px the links collapse behind the Menu button. */
+      @media (max-width: 699.98px) {
+        html {
+          scroll-padding-top: 76px;
+        }
+
+        .header-inner {
+          position: relative;
+          width: min(100% - 28px, 1180px);
+          min-height: 60px;
+        }
+
+        .nav-toggle {
+          display: inline-flex;
+        }
+
+        .main-nav {
+          position: absolute;
+          top: 100%;
+          right: -14px;
+          left: -14px;
+          display: none;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          padding: 6px 14px 12px;
+          border-bottom: 1px solid var(--line);
+          background: var(--card);
+          box-shadow: 0 12px 24px rgb(12 35 64 / 10%);
+        }
+
+        .main-nav.is-open {
+          display: flex;
+        }
+
+        .main-nav a {
+          padding: 12px 10px;
+          border-bottom: 0;
+          border-left: 3px solid transparent;
+          font-size: 0.95rem;
+        }
+
+        .main-nav a:hover,
+        .main-nav a:focus-visible,
+        .main-nav a[aria-current="location"] {
+          border-left-color: var(--yellow);
+          background: var(--paper);
+        }
+
       }
 
       .page-shell {
@@ -254,10 +373,6 @@
 
       .content {
         min-width: 0;
-      }
-
-      .content-section {
-        scroll-margin-top: 92px;
       }
 
       .content-section + .content-section {
@@ -727,34 +842,19 @@
           gap: 38px;
         }
 
+        /* The content column is narrow here: smaller portrait photos, and
+           wide photos sit above the text. */
+        .presentation {
+          grid-template-columns: 150px minmax(0, 1fr);
+        }
+
+        .presentation.presentation--landscape {
+          grid-template-columns: 1fr;
+        }
+
       }
 
       @media (max-width: 680px) {
-        html {
-          scroll-padding-top: 118px;
-        }
-
-        .header-inner {
-          width: min(100% - 28px, 1180px);
-          min-height: auto;
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 0;
-          padding-top: 12px;
-        }
-
-        .main-nav {
-          width: 100%;
-          gap: 21px;
-          overflow-x: auto;
-          scrollbar-width: thin;
-        }
-
-        .main-nav a {
-          padding: 12px 0 10px;
-          font-size: 0.78rem;
-        }
-
         .page-shell {
           width: min(100% - 32px, 700px);
           grid-template-columns: 1fr;
@@ -777,11 +877,6 @@
           max-width: 300px;
           margin-right: auto;
           margin-left: auto;
-        }
-
-        .content-section,
-        .content-section + .content-section {
-          scroll-margin-top: 115px;
         }
 
         .content-section + .content-section {
@@ -870,7 +965,11 @@
           <span class="brand-mark" aria-hidden="true">TP</span>
           <span>Tapish Pawar</span>
         </a>
-        <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+          <span class="nav-toggle-icon" aria-hidden="true"></span>
+          Menu
+        </button>
+        <nav class="main-nav" id="main-nav" aria-label="Main navigation">
           <a href="#home">Bio</a>
           <a href="#research">Research</a>
           <a href="#publications">Publications</a>
@@ -1330,6 +1429,100 @@
     </div>
     <script>
       document.querySelector("#year").textContent = new Date().getFullYear();
+
+      const nav = document.querySelector("#main-nav");
+      const navToggle = document.querySelector(".nav-toggle");
+      const navLinks = [...nav.querySelectorAll('a[href^="#"]')];
+      const narrowScreen = window.matchMedia("(max-width: 699.98px)");
+
+      // Collapsible menu for narrow screens.
+      function setMenuOpen(open) {
+        nav.classList.toggle("is-open", open);
+        navToggle.setAttribute("aria-expanded", String(open));
+      }
+
+      navToggle.addEventListener("click", () => {
+        setMenuOpen(navToggle.getAttribute("aria-expanded") !== "true");
+      });
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => setMenuOpen(false));
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && nav.classList.contains("is-open")) {
+          setMenuOpen(false);
+          navToggle.focus();
+        }
+      });
+
+      document.addEventListener("click", (event) => {
+        if (nav.classList.contains("is-open") && !event.target.closest(".header-inner")) {
+          setMenuOpen(false);
+        }
+      });
+
+      narrowScreen.addEventListener("change", () => setMenuOpen(false));
+
+      // Highlight the link for the section currently on screen.
+      const sections = navLinks
+        .map((link) => document.querySelector(link.getAttribute("href")))
+        .filter(Boolean);
+      const lastSection = sections[sections.length - 1];
+      const footer = document.querySelector(".footer");
+      const inBand = new Set();
+      let footerVisible = false;
+      let bandTop = 0;
+
+      function setActiveLink(id) {
+        navLinks.forEach((link) => {
+          if (link.getAttribute("href") === "#" + id) {
+            link.setAttribute("aria-current", "location");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        });
+      }
+
+      function updateActiveLink() {
+        // The lowest section in the band is the one whose heading most recently
+        // scrolled into view. The last section is short, so it becomes active
+        // once the footer shows.
+        let active = footerVisible
+          ? lastSection
+          : sections.filter((section) => inBand.has(section)).pop();
+        // Between sections, or above the first one (the profile card on
+        // phones), keep the section the reader last scrolled past.
+        if (!active) {
+          active =
+            sections.filter((section) => section.getBoundingClientRect().top < bandTop).pop() ||
+            sections[0];
+        }
+        setActiveLink(active.id);
+      }
+
+      if ("IntersectionObserver" in window) {
+        // A band from just under the sticky header to 40% down the screen.
+        bandTop = document.querySelector(".site-header").offsetHeight + 8;
+        const sectionObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) inBand.add(entry.target);
+              else inBand.delete(entry.target);
+            });
+            updateActiveLink();
+          },
+          { rootMargin: `-${bandTop}px 0px -60% 0px` }
+        );
+        sections.forEach((section) => sectionObserver.observe(section));
+
+        if (footer) {
+          new IntersectionObserver((entries) => {
+            footerVisible = entries[0].isIntersecting;
+            updateActiveLink();
+          }).observe(footer);
+        }
+      }
     </script>
   </body>
 </html>
