@@ -129,20 +129,38 @@
       }
 
       .main-nav a {
-        padding: 24px 0 21px;
-        border-bottom: 3px solid transparent;
+        position: relative;
+        padding: 24px 0;
         color: var(--muted);
         font-size: 0.82rem;
         font-weight: 650;
         text-decoration: none;
         white-space: nowrap;
-        transition: border-color 150ms ease, color 150ms ease;
+        transition: color 150ms ease;
+      }
+
+      .main-nav a::after {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 3px;
+        border-radius: 3px 3px 0 0;
+        background: var(--yellow);
+        content: "";
+        transform: scaleX(0);
+        transition: transform 200ms ease;
+      }
+
+      .main-nav a:hover::after,
+      .main-nav a:focus-visible::after,
+      .main-nav a[aria-current="location"]::after {
+        transform: scaleX(1);
       }
 
       .main-nav a:hover,
       .main-nav a:focus-visible,
       .main-nav a[aria-current="location"] {
-        border-bottom-color: var(--yellow);
         color: var(--blue);
       }
 
@@ -246,6 +264,11 @@
 
         .main-nav.is-open {
           display: flex;
+          animation: menu-in 180ms ease-out;
+        }
+
+        .main-nav a::after {
+          display: none;
         }
 
         .main-nav a {
@@ -483,6 +506,7 @@
         border: 1px solid var(--line);
         border-radius: 14px;
         background: var(--card);
+        transition: transform 220ms ease, box-shadow 220ms ease;
       }
 
       .research-area--feature {
@@ -559,6 +583,11 @@
         border: 1px solid var(--line);
         border-radius: 14px;
         background: var(--card);
+        transition: transform 220ms ease, box-shadow 220ms ease;
+      }
+
+      .field-moment > img {
+        transition: transform 400ms ease;
       }
 
       .field-moment video {
@@ -804,6 +833,7 @@
         border: 1px solid var(--line);
         border-radius: 14px;
         background: var(--card);
+        transition: transform 220ms ease, box-shadow 220ms ease;
       }
 
       .presentation img {
@@ -1026,6 +1056,69 @@
         }
       }
 
+      /* Hover: cards rise a little; photos zoom slightly inside their frame. */
+      @media (hover: hover) {
+        .field-moment:hover,
+        .presentation:hover,
+        .research-area:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 10px 24px rgb(12 35 64 / 9%);
+        }
+
+        .field-moment:hover > img {
+          transform: scale(1.03);
+        }
+
+        .section-link:hover,
+        .featured-meta a:hover {
+          letter-spacing: 0.01em;
+        }
+      }
+
+      .section-link,
+      .featured-meta a {
+        transition: letter-spacing 200ms ease;
+      }
+
+      /* Profile card settles in when the page opens. */
+      .profile {
+        animation: rise-in 600ms ease-out both;
+      }
+
+      .profile-photo {
+        transition: transform 300ms ease, box-shadow 300ms ease;
+      }
+
+      .profile-photo:hover {
+        transform: scale(1.04) rotate(-1.5deg);
+        box-shadow: 0 12px 30px rgb(12 35 64 / 20%);
+      }
+
+      /* "Copied" confirmation pops briefly. */
+      .copy-citation.is-copied {
+        animation: pop 260ms ease-out;
+      }
+
+      @keyframes rise-in {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+      }
+
+      @keyframes menu-in {
+        from {
+          opacity: 0;
+          transform: translateY(-6px);
+        }
+      }
+
+      @keyframes pop {
+        50% {
+          transform: scale(1.08);
+        }
+      }
+
       /* Hidden instantly; only the reveal is animated. */
       .js-reveal .content-section.reveal {
         opacity: 0;
@@ -1050,8 +1143,19 @@
         }
 
         .publication-item:hover,
-        .publication-item:focus-within {
+        .publication-item:focus-within,
+        .field-moment:hover,
+        .presentation:hover,
+        .research-area:hover,
+        .field-moment:hover > img,
+        .profile-photo:hover {
           transform: none;
+        }
+
+        .profile,
+        .main-nav.is-open,
+        .copy-citation.is-copied {
+          animation: none;
         }
       }
     </style>
