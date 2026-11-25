@@ -433,7 +433,7 @@
 
       .field-photos {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 16px;
         margin-top: 16px;
       }
@@ -442,12 +442,13 @@
         margin: 0;
       }
 
-      .field-moment img {
+      .field-moment img,
+      .field-photos .field-moment video {
         display: block;
         width: 100%;
         max-width: 100%;
         height: auto;
-        aspect-ratio: 3 / 4;
+        aspect-ratio: 4 / 5;
         object-fit: cover;
       }
 
@@ -909,6 +910,13 @@
             </figcaption>
           </figure>
           <div class="field-photos">
+            <figure class="field-moment">
+              <video controls muted loop playsinline preload="metadata" poster="bls-seedling-rating.jpg" width="720" height="900">
+                <source src="bls-seedling-rating.mp4" type="video/mp4">
+                Your browser does not support embedded video.
+              </video>
+              <figcaption>Rating bacterial leaf streak (BLS) on durum wheat seedlings.</figcaption>
+            </figure>
             <figure class="field-moment">
               <img src="field-with-advisor.jpg" alt="Tapish Pawar smiling in the wheat plots with advisor Dr. Gazala Ameen" width="900" height="1200" loading="lazy">
               <figcaption>In the BLS field plots with my advisor, <a href="https://www.sdstate.edu/directory/gazala-ameen" target="_blank" rel="noreferrer">Dr. Gazala Ameen</a>.</figcaption>
