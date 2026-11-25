@@ -628,39 +628,13 @@
         gap: 16px;
       }
 
-      .presentation--wide {
-        grid-template-columns: 1fr;
+      /* Landscape photos sit in a wider column at their natural shape. */
+      .presentation--landscape {
+        grid-template-columns: 300px minmax(0, 1fr);
       }
 
-      .presentation-media {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-      }
-
-      .presentation--wide .presentation-media img {
-        aspect-ratio: 4 / 3;
-      }
-
-      .presentation-media.presentation-media--single {
-        grid-template-columns: 1fr;
-      }
-
-      .presentation--wide .presentation-media--single img {
-        aspect-ratio: 1400 / 788;
-      }
-
-      /* Column widths follow each photo's shape so all three share one height. */
-      .presentation-media--trio {
-        grid-template-columns: 16fr 9fr 9fr;
-      }
-
-      .presentation-media.presentation-media--llp {
-        grid-template-columns: 16fr 16fr 9fr;
-      }
-
-      .presentation--wide .presentation-media .media-portrait {
-        aspect-ratio: 3 / 4;
+      .presentation.presentation--landscape img {
+        aspect-ratio: auto;
       }
 
       .award-chips {
@@ -831,8 +805,7 @@
           gap: 12px;
         }
 
-        .field-photos > :first-child:nth-last-child(3),
-        .presentation-media--trio > :first-child {
+        .field-photos > :first-child:nth-last-child(3) {
           grid-column: 1 / -1;
         }
 
@@ -841,7 +814,8 @@
           grid-template-columns: 1fr;
         }
 
-        .presentation-media.presentation-media--trio {
+        /* Two portrait items that still fit side by side on a phone. */
+        .field-photos.field-photos--keep-pair {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
@@ -866,8 +840,8 @@
           max-width: 260px;
         }
 
-        .presentation-media {
-          grid-template-columns: 1fr;
+        .presentation--landscape > img {
+          max-width: 100%;
         }
 
         .footer {
@@ -1084,7 +1058,7 @@
               Our first field inoculation of bacterial leaf streak (BLS): the team inoculating the wheat plots together.
             </figcaption>
           </figure>
-          <div class="field-photos">
+          <div class="field-photos field-photos--two field-photos--keep-pair">
             <figure class="field-moment">
               <video controls muted loop playsinline preload="metadata" poster="bls-seedling-rating.jpg" width="720" height="900">
                 <source src="bls-seedling-rating.mp4" type="video/mp4">
@@ -1095,20 +1069,6 @@
             <figure class="field-moment">
               <img decoding="async" src="field-with-advisor.jpg" alt="Tapish Pawar smiling in the wheat plots with advisor Dr. Gazala Ameen" width="600" height="800" loading="lazy">
               <figcaption>In the BLS field plots with my advisor, <a href="https://www.sdstate.edu/directory/gazala-ameen" target="_blank" rel="noreferrer">Dr. Gazala Ameen</a>.</figcaption>
-            </figure>
-            <figure class="field-moment">
-              <img decoding="async" src="field-leaf-check.jpg" alt="Tapish Pawar in gloves examining a wheat leaf in the field" width="600" height="800" loading="lazy">
-              <figcaption>Checking a wheat leaf during the BLS field trial.</figcaption>
-            </figure>
-          </div>
-          <div class="field-photos field-photos--two">
-            <figure class="field-moment">
-              <img decoding="async" src="lab-pouring-plates.jpg" alt="Tapish Pawar in a lab coat pouring agar plates inside a biosafety cabinet" width="800" height="1067" loading="lazy">
-              <figcaption><span class="section-kicker">In the lab</span>Pouring media plates in the biosafety cabinet.</figcaption>
-            </figure>
-            <figure class="field-moment">
-              <img decoding="async" src="lab-team.jpg" alt="Tapish Pawar with four lab mates in white lab coats, smiling in the lab" width="800" height="1067" loading="lazy">
-              <figcaption><span class="section-kicker">Lab team</span>With my lab mates in the Plant Pathology Lab at SDSU.</figcaption>
             </figure>
           </div>
           <figure class="field-moment lab-feature">
@@ -1190,12 +1150,8 @@
           <div class="bio-group">
             <h3>Conference presentations</h3>
             <div class="presentation-list">
-            <article class="presentation presentation--wide">
-              <div class="presentation-media presentation-media--trio presentation-media--llp">
-                <img decoding="async" class="media-landscape" src="plant-health-2026-talk.jpg" alt="Tapish Pawar presenting at a podium beside a slide titled Mapping Bacterial Leaf Streak Resistance in Durum Wheat at Plant Health 2026" width="800" height="600" loading="lazy">
-                <img decoding="async" class="media-landscape" src="plant-health-2026-diagnostics-bowl.jpg" alt="Tapish Pawar holding a Team Midwest Fun-Guys sign with three Plant Diagnostics Bowl teammates holding certificates of participation" width="800" height="600" loading="lazy">
-                <img decoding="async" class="media-portrait" src="plant-health-2026-team.jpg" alt="Tapish Pawar with co-advisor Dr. Shyam Solanki and advisor Dr. Gazala Ameen beside the Plant Health 2026 welcome sign" width="480" height="640" loading="lazy">
-              </div>
+            <article class="presentation presentation--landscape">
+              <img decoding="async" src="plant-health-2026-talk.jpg" alt="Tapish Pawar presenting at a podium beside a slide titled Mapping Bacterial Leaf Streak Resistance in Durum Wheat at Plant Health 2026" width="800" height="600" loading="lazy">
               <div class="presentation-body">
                 <p class="section-kicker">Oral presentation · August 2026</p>
                 <h4>Mapping Bacterial Leaf Streak Resistance in Durum Wheat</h4>
@@ -1207,10 +1163,8 @@
                 <p class="presentation-summary">At the American Phytopathological Society's annual meeting, I presented my research on mapping BLS resistance in durum wheat and competed in the Plant Diagnostics Bowl with Team Midwest Fun-Guys. My advisor, <a href="https://www.sdstate.edu/directory/gazala-ameen" target="_blank" rel="noreferrer">Dr. Gazala Ameen</a>, and my co-advisor, Dr. Shyam Solanki, were there from SDSU too.</p>
               </div>
             </article>
-            <article class="presentation presentation--wide">
-              <div class="presentation-media presentation-media--single">
-                <img decoding="async" src="nc-aps-2026-poster.jpg" alt="Tapish Pawar standing beside a poster on deep learning-based classification of wheat foliar diseases with a focus on bacterial leaf streak" width="1400" height="788" loading="lazy">
-              </div>
+            <article class="presentation presentation--landscape">
+              <img decoding="async" src="nc-aps-2026-poster.jpg" alt="Tapish Pawar standing beside a poster on deep learning-based classification of wheat foliar diseases with a focus on bacterial leaf streak" width="1400" height="788" loading="lazy">
               <div class="presentation-body">
                 <p class="section-kicker">Poster · 2026</p>
                 <h4>Deep Learning-Based Classification of Wheat Foliar Diseases with a Focus on Bacterial Leaf Streak</h4>
@@ -1228,12 +1182,8 @@
                 <p class="presentation-summary">I shared multi-trait genome-wide association results for BLS resistance in durum wheat. Several marker–trait associations were detected consistently across models, many loci were shared between adult plant resistance and disease progress (AUDPC), and seedling resistance appeared to be genetically distinct.</p>
               </div>
             </article>
-            <article class="presentation presentation--wide">
-              <div class="presentation-media presentation-media--trio">
-                <img decoding="async" class="media-landscape" src="nc-aps-2025-talk.jpg" alt="Tapish Pawar giving an oral presentation titled Discovering Resistance to Bacterial Leaf Streak Disease in Global Durum Wheat Panel" width="800" height="600" loading="lazy">
-                <img decoding="async" class="media-portrait" src="nc-aps-2025-awards-advisor.jpg" alt="Tapish Pawar holding two APS North Central Division award certificates beside a colleague" width="480" height="640" loading="lazy">
-                <img decoding="async" class="media-portrait" src="nc-aps-2025-awards.jpg" alt="Tapish Pawar holding up the Student Oral Presentation Competition and Graduate Student Travel Award certificates" width="480" height="640" loading="lazy">
-              </div>
+            <article class="presentation">
+              <img decoding="async" src="nc-aps-2025-awards.jpg" alt="Tapish Pawar holding up the Student Oral Presentation Competition and Graduate Student Travel Award certificates" width="480" height="640" loading="lazy">
               <div class="presentation-body">
                 <p class="section-kicker">Oral presentation · June 2025</p>
                 <h4>Discovering Resistance to Bacterial Leaf Streak Disease in Global Durum Wheat Panel</h4>
@@ -1245,16 +1195,13 @@
                 <p class="presentation-summary">I presented my Ph.D. research on finding bacterial leaf streak resistance in a global durum wheat panel, placed second in the student oral presentation competition, and received a graduate student travel award from the APS North Central Division.</p>
               </div>
             </article>
-            <article class="presentation presentation--wide">
-              <div class="presentation-media">
-                <img decoding="async" src="bls-meeting-2025-talk.jpg" alt="Tapish Pawar presenting a slide on the global distribution of Xanthomonas translucens and durum wheat production" width="800" height="600" loading="lazy">
-                <img decoding="async" src="bls-meeting-2025-group.jpg" alt="Group selfie of meeting attendees in front of the Norman Borlaug statue at the University of Minnesota" width="800" height="600" loading="lazy">
-              </div>
+            <article class="presentation presentation--landscape">
+              <img decoding="async" src="bls-meeting-2025-talk.jpg" alt="Tapish Pawar presenting a slide on the global distribution of Xanthomonas translucens and durum wheat production" width="800" height="600" loading="lazy">
               <div class="presentation-body">
                 <p class="section-kicker">Talk · 2025</p>
                 <h4>Bacterial leaf streak in durum wheat</h4>
                 <p class="presentation-venue">Bacterial Leaf Streak meeting · University of Minnesota, Minneapolis</p>
-                <p class="presentation-summary">My first BLS meeting. I presented my research on bacterial leaf streak in durum wheat, starting with where <i>Xanthomonas translucens</i> occurs worldwide and how that overlaps with durum wheat production. Afterwards, attendees gathered for a photo at the Norman Borlaug statue on campus.</p>
+                <p class="presentation-summary">My first BLS meeting. I presented my research on bacterial leaf streak in durum wheat, starting with where <i>Xanthomonas translucens</i> occurs worldwide and how that overlaps with durum wheat production.</p>
               </div>
             </article>
             <article class="presentation">
