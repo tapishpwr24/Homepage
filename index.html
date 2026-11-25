@@ -583,6 +583,34 @@
         aspect-ratio: 4 / 3;
       }
 
+      /* Column widths follow each photo's shape so all three share one height. */
+      .presentation-media--trio {
+        grid-template-columns: 16fr 9fr 9fr;
+      }
+
+      .presentation--wide .presentation-media .media-portrait {
+        aspect-ratio: 3 / 4;
+      }
+
+      .award-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .award-chips li {
+        padding: 4px 12px;
+        border: 1px solid rgb(255 209 0 / 70%);
+        border-radius: 999px;
+        background: rgb(255 209 0 / 18%);
+        color: var(--ink);
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+
       .presentation h4 {
         margin: 0;
         font-family: Georgia, "Times New Roman", serif;
@@ -866,6 +894,19 @@
               </li>
             </ul>
           </div>
+          <div class="bio-group">
+            <h3>Awards</h3>
+            <ul class="bio-list">
+              <li class="bio-entry">
+                <h4>Student Oral Presentation Competition, Second Place</h4>
+                <p class="bio-entry-meta">APS North Central Division Meeting · June 2025</p>
+              </li>
+              <li class="bio-entry">
+                <h4>Graduate Student Travel Award</h4>
+                <p class="bio-entry-meta">APS North Central Division Meeting · June 2025</p>
+              </li>
+            </ul>
+          </div>
         </section>
 
         <section class="content-section" id="research">
@@ -1031,6 +1072,23 @@
           <div class="bio-group">
             <h3>Conference presentations</h3>
             <div class="presentation-list">
+            <article class="presentation presentation--wide">
+              <div class="presentation-media presentation-media--trio">
+                <img class="media-landscape" src="nc-aps-2025-talk.jpg" alt="Tapish Pawar giving an oral presentation titled Discovering Resistance to Bacterial Leaf Streak Disease in Global Durum Wheat Panel" width="1071" height="803" loading="lazy">
+                <img class="media-portrait" src="nc-aps-2025-awards-advisor.jpg" alt="Tapish Pawar holding two APS North Central Division award certificates beside a colleague" width="900" height="1200" loading="lazy">
+                <img class="media-portrait" src="nc-aps-2025-awards.jpg" alt="Tapish Pawar holding up the Student Oral Presentation Competition and Graduate Student Travel Award certificates" width="900" height="1200" loading="lazy">
+              </div>
+              <div class="presentation-body">
+                <p class="section-kicker">Oral presentation · June 2025</p>
+                <h4>Discovering Resistance to Bacterial Leaf Streak Disease in Global Durum Wheat Panel</h4>
+                <p class="presentation-venue">APS North Central Division Meeting · June 9–11, 2025</p>
+                <ul class="award-chips" aria-label="Awards">
+                  <li>Student Oral Presentation Competition · Second Place</li>
+                  <li>Graduate Student Travel Award</li>
+                </ul>
+                <p class="presentation-summary">I presented my Ph.D. research on finding bacterial leaf streak resistance in a global durum wheat panel, placed second in the student oral presentation competition, and received a graduate student travel award from the APS North Central Division.</p>
+              </div>
+            </article>
             <article class="presentation presentation--wide">
               <div class="presentation-media">
                 <img src="bls-meeting-2025-talk.jpg" alt="Tapish Pawar presenting a slide on the global distribution of Xanthomonas translucens and durum wheat production" width="1200" height="900" loading="lazy">
