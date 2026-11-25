@@ -3,22 +3,31 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f5f3ed">
-    <title>Tapish Pawar | Personal Homepage</title>
+    <meta name="theme-color" content="#0033A0">
+    <meta name="description" content="Tapish Pawar's personal website featuring research in plant pathology, crop disease management, and disease resistance.">
+    <title>Tapish Pawar | Plant Pathology Research</title>
     <style>
       :root {
         color-scheme: light;
-        --ink: #1d2925;
-        --muted: #65736c;
-        --paper: #f5f3ed;
-        --card: #fffefa;
-        --green: #245c49;
-        --lime: #d7ed9f;
-        --line: #e4e6dc;
+        --ink: #0C2340;
+        --muted: #52627A;
+        --paper: #F5F7FC;
+        --card: #FFFFFF;
+        --blue: #0033A0;
+        --navy: #0C2340;
+        --yellow: #FFD100;
+        --light-yellow: #F1EB9C;
+        --light-blue: #CBD3EB;
+        --line: #DFE5F0;
       }
 
       * {
         box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 92px;
       }
 
       body {
@@ -26,164 +35,366 @@
         min-height: 100vh;
         margin: 0;
         background:
-          radial-gradient(ellipse at 12% 8%, rgb(215 237 159 / 36%), transparent 34rem),
+          radial-gradient(ellipse at 4% 2%, rgb(255 209 0 / 14%), transparent 30rem),
+          radial-gradient(ellipse at 100% 35%, rgb(203 211 235 / 38%), transparent 32rem),
           var(--paper);
         color: var(--ink);
         font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
-        line-height: 1.6;
+        line-height: 1.65;
       }
 
-      .page {
-        width: min(100% - 40px, 1040px);
-        margin: 0 auto;
-        padding: 34px 0 52px;
+      a {
+        color: var(--blue);
+        text-underline-offset: 3px;
       }
 
-      .topline {
+      a:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 4px;
+      }
+
+      .skip-link {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        z-index: 20;
+        transform: translateY(-150%);
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: var(--navy);
+        color: white;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid var(--line);
+        background: rgb(255 255 255 / 94%);
+        backdrop-filter: blur(14px);
+      }
+
+      .header-inner {
         display: flex;
+        width: min(100% - 48px, 1180px);
+        min-height: 68px;
         align-items: center;
         justify-content: space-between;
-        gap: 16px;
+        gap: 30px;
+        margin: 0 auto;
+      }
+
+      .brand {
+        display: inline-flex;
+        flex: 0 0 auto;
+        align-items: center;
+        gap: 10px;
+        color: var(--ink);
+        font-size: 0.94rem;
+        font-weight: 750;
+        text-decoration: none;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 31px;
+        height: 31px;
+        place-items: center;
+        border-radius: 9px;
+        background: var(--blue);
+        color: var(--yellow);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 0.82rem;
+      }
+
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: clamp(14px, 2.4vw, 29px);
+      }
+
+      .main-nav a {
+        padding: 24px 0 21px;
+        border-bottom: 3px solid transparent;
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 650;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: border-color 150ms ease, color 150ms ease;
+      }
+
+      .main-nav a:hover,
+      .main-nav a:focus-visible {
+        border-bottom-color: var(--yellow);
+        color: var(--blue);
+      }
+
+      .page-shell {
+        display: grid;
+        width: min(100% - 48px, 1120px);
+        grid-template-columns: 230px minmax(0, 1fr);
+        align-items: start;
+        gap: clamp(42px, 7vw, 92px);
+        margin: 0 auto;
+        padding: 58px 0 76px;
+      }
+
+      .profile {
+        position: sticky;
+        top: 104px;
+        align-self: start;
+        text-align: center;
+      }
+
+      .profile-photo {
+        display: block;
+        width: 154px;
+        height: 154px;
+        margin: 0 auto 20px;
+        border: 4px solid white;
+        border-radius: 50%;
+        box-shadow: 0 8px 26px rgb(12 35 64 / 15%);
+        object-fit: cover;
+      }
+
+      .profile h1 {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.9rem;
+        font-weight: 400;
+        letter-spacing: -0.035em;
+        line-height: 1.12;
+      }
+
+      .profile-role {
+        margin: 10px 0 4px;
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.45;
+      }
+
+      .affiliation {
+        margin: 0;
+        font-size: 0.88rem;
+        line-height: 1.45;
+      }
+
+      .affiliation a {
+        font-weight: 650;
+        text-decoration: none;
+      }
+
+      .affiliation a:hover {
+        text-decoration: underline;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 7px;
+        margin-top: 22px;
+      }
+
+      .social-link {
+        display: grid;
+        width: 40px;
+        height: 40px;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        background: white;
+        color: var(--blue);
+        font-size: 0.68rem;
+        font-weight: 800;
+        text-decoration: none;
+        transition: transform 150ms ease, background 150ms ease;
+      }
+
+      .social-link svg {
+        display: block;
+        width: 20px;
+        height: 20px;
+      }
+
+      .social-link:hover {
+        transform: translateY(-2px);
+        background: #EEF2FA;
+      }
+
+      .profile-links {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        margin: 16px 0 0;
+        font-size: 0.76rem;
+      }
+
+      .profile-links a {
+        color: var(--blue);
+        text-decoration: none;
+      }
+
+      .profile-links a:hover {
+        text-decoration: underline;
+      }
+
+      .profile-note {
+        margin: 22px 0 0;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
         color: var(--muted);
         font-size: 0.78rem;
-        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+
+      .content {
+        min-width: 0;
+      }
+
+      .content-section {
+        scroll-margin-top: 92px;
+      }
+
+      .content-section + .content-section {
+        margin-top: 48px;
+        padding-top: 42px;
+        border-top: 1px solid var(--line);
+      }
+
+      .section-kicker {
+        margin: 0 0 9px;
+        color: var(--blue);
+        font-size: 0.72rem;
+        font-weight: 800;
         letter-spacing: 0.12em;
         text-transform: uppercase;
       }
 
-      .mark {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .mark::before {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: var(--green);
-        content: "";
-      }
-
-      .hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) 190px;
-        align-items: center;
-        gap: 32px;
-        padding: 70px 0 46px;
-      }
-
-      .eyebrow {
-        margin: 0 0 12px;
-        color: var(--green);
-        font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 0.13em;
-        text-transform: uppercase;
-      }
-
-      h1 {
-        max-width: 680px;
-        margin: 0;
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: clamp(3rem, 8vw, 5.7rem);
-        font-weight: 400;
-        letter-spacing: -0.065em;
-        line-height: 0.99;
-      }
-
-      .intro {
-        max-width: 550px;
-        margin: 24px 0 0;
-        color: var(--muted);
-        font-size: clamp(1rem, 2vw, 1.15rem);
-      }
-
-      .portrait {
-        display: grid;
-        width: 176px;
-        aspect-ratio: 1;
-        place-items: center;
-        border: 1px solid rgb(36 92 73 / 14%);
-        border-radius: 50%;
-        background: linear-gradient(145deg, #e1efc6, #c8dfb5);
-        color: var(--green);
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: 3.5rem;
-      }
-
-      .site-card {
-        overflow: hidden;
-        border: 1px solid var(--line);
-        border-radius: 20px;
-        background: var(--card);
-        box-shadow: 0 20px 60px rgb(34 52 42 / 7%);
-      }
-
-      .tabs {
-        display: flex;
-        gap: 4px;
-        overflow-x: auto;
-        padding: 12px;
-        border-bottom: 1px solid var(--line);
-        scrollbar-width: thin;
-      }
-
-      .tab {
-        flex: 0 0 auto;
-        padding: 11px 17px;
-        border: 0;
-        border-radius: 999px;
-        background: transparent;
-        color: var(--muted);
-        cursor: pointer;
-        font: inherit;
-        font-size: 0.92rem;
-        font-weight: 650;
-        transition: background 160ms ease, color 160ms ease;
-      }
-
-      .tab:hover {
-        background: #f1f3eb;
-        color: var(--ink);
-      }
-
-      .tab[aria-selected="true"] {
-        background: var(--green);
-        color: white;
-      }
-
-      .tab:focus-visible,
-      a:focus-visible {
-        outline: 3px solid #a1c56c;
-        outline-offset: 3px;
-      }
-
-      .panel {
-        min-height: 260px;
-        padding: clamp(28px, 6vw, 58px);
-      }
-
-      .panel[hidden] {
-        display: none;
-      }
-
-      .panel h2 {
-        margin: 0 0 14px;
+      .content-section h2 {
+        margin: 0 0 16px;
         font-family: Georgia, "Times New Roman", serif;
         font-size: clamp(2rem, 4vw, 2.8rem);
         font-weight: 400;
-        letter-spacing: -0.04em;
+        letter-spacing: -0.045em;
+        line-height: 1.12;
       }
 
-      .panel p {
-        max-width: 650px;
+      .lead {
+        max-width: 790px;
+        margin: 0;
+        color: #3F526B;
+        font-size: 1.03rem;
+      }
+
+      .bio-group {
+        margin-top: 30px;
+      }
+
+      .bio-group h3 {
+        margin: 0 0 12px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.45rem;
+        font-weight: 400;
+      }
+
+      .bio-list {
+        margin: 0;
+        padding: 0;
+        border-top: 1px solid var(--line);
+        list-style: none;
+      }
+
+      .bio-entry {
+        padding: 14px 2px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .bio-entry h4 {
+        margin: 0;
+        font-size: 0.96rem;
+      }
+
+      .bio-entry-meta {
+        margin: 4px 0 0;
+        color: var(--muted);
+        font-size: 0.84rem;
+        line-height: 1.5;
+      }
+
+      .bio-entry-description {
+        margin: 6px 0 0;
+        color: #3F526B;
+        font-size: 0.9rem;
+        line-height: 1.55;
+      }
+
+      .research-interests {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      .research-interests li + li {
+        margin-top: 8px;
+      }
+
+      .featured-study {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 24px;
+        margin-top: 22px;
+        padding: 21px 23px;
+        border: 1px solid rgb(0 51 160 / 14%);
+        border-radius: 14px;
+        background: linear-gradient(110deg, rgb(255 209 0 / 17%), #FFFDF0);
+      }
+
+      .featured-study h3 {
+        margin: 0 0 7px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.2rem;
+        font-weight: 400;
+        line-height: 1.3;
+      }
+
+      .featured-study p {
         margin: 0;
         color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .featured-meta {
+        min-width: 130px;
+        padding-left: 20px;
+        border-left: 1px solid var(--light-blue);
+        font-size: 0.82rem;
+      }
+
+      .featured-meta span {
+        display: block;
+        color: var(--blue);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .featured-meta a {
+        display: inline-block;
+        margin-top: 4px;
+        font-weight: 700;
       }
 
       .publication-list {
-        margin: 30px 0 0;
+        margin: 23px 0 0;
         padding: 0;
         border-top: 1px solid var(--line);
         list-style: none;
@@ -192,77 +403,176 @@
       .publication-item {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto;
-        gap: 8px 20px;
         align-items: start;
-        padding: 20px 0;
+        gap: 8px 18px;
+        padding: 18px 2px;
         border-bottom: 1px solid var(--line);
       }
 
       .publication-title {
-        color: var(--green);
+        color: var(--blue);
+        font-size: 0.94rem;
         font-weight: 700;
         text-decoration-thickness: 1px;
-        text-underline-offset: 3px;
       }
 
       .publication-venue {
-        margin-top: 6px !important;
-        font-size: 0.9rem;
+        margin: 5px 0 0;
+        color: var(--muted);
+        font-size: 0.82rem;
       }
 
       .publication-year {
         color: var(--muted);
-        font-size: 0.9rem;
+        font-size: 0.83rem;
         font-variant-numeric: tabular-nums;
       }
 
-      .scholar-link {
+      .section-link {
         display: inline-block;
-        margin-top: 24px;
-        color: var(--green);
+        margin-top: 20px;
+        font-size: 0.9rem;
         font-weight: 700;
-        text-decoration-thickness: 1px;
-        text-underline-offset: 3px;
       }
 
-      .placeholder {
-        display: inline-block;
-        margin-top: 24px;
-        padding: 8px 12px;
+      .contact-panel {
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: white;
+      }
+
+      .contact-panel p {
+        max-width: 660px;
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .contact-address {
+        margin-top: 16px;
+        color: var(--muted);
+        font-size: 0.9rem;
+        font-style: normal;
+        line-height: 1.6;
+      }
+
+      .contact-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 19px;
+      }
+
+      .contact-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 14px;
         border: 1px solid var(--line);
         border-radius: 8px;
-        color: var(--muted);
-        font-size: 0.82rem;
+        background: #F7F9FD;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .contact-link:hover {
+        border-color: var(--light-blue);
+        background: #EEF2FA;
       }
 
       .footer {
         display: flex;
         justify-content: space-between;
-        gap: 12px;
-        padding: 22px 4px 0;
+        gap: 14px;
+        padding: 20px 0 0;
+        border-top: 1px solid var(--line);
         color: var(--muted);
-        font-size: 0.82rem;
+        font-size: 0.8rem;
       }
 
-      @media (max-width: 620px) {
-        .page {
-          width: min(100% - 28px, 1040px);
-          padding-top: 22px;
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      @media (max-width: 900px) {
+        .page-shell {
+          grid-template-columns: 195px minmax(0, 1fr);
+          gap: 38px;
         }
 
-        .hero {
+      }
+
+      @media (max-width: 680px) {
+        html {
+          scroll-padding-top: 118px;
+        }
+
+        .header-inner {
+          width: min(100% - 28px, 1180px);
+          min-height: auto;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0;
+          padding-top: 12px;
+        }
+
+        .main-nav {
+          width: 100%;
+          gap: 21px;
+          overflow-x: auto;
+          scrollbar-width: thin;
+        }
+
+        .main-nav a {
+          padding: 12px 0 10px;
+          font-size: 0.78rem;
+        }
+
+        .page-shell {
+          width: min(100% - 32px, 700px);
           grid-template-columns: 1fr;
-          gap: 24px;
-          padding: 54px 0 34px;
+          gap: 38px;
+          padding-top: 36px;
         }
 
-        .portrait {
-          width: 104px;
-          font-size: 2.4rem;
+        .profile {
+          position: static;
+          padding-bottom: 27px;
+          border-bottom: 1px solid var(--line);
         }
 
-        .tab {
-          padding: 10px 14px;
+        .profile-photo {
+          width: 132px;
+          height: 132px;
+        }
+
+        .profile-note {
+          max-width: 300px;
+          margin-right: auto;
+          margin-left: auto;
+        }
+
+        .content-section,
+        .content-section + .content-section {
+          scroll-margin-top: 115px;
+        }
+
+        .content-section + .content-section {
+          margin-top: 39px;
+          padding-top: 34px;
+        }
+
+        .featured-study {
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+
+        .featured-meta {
+          padding: 0;
+          border: 0;
         }
 
         .footer {
@@ -271,71 +581,146 @@
       }
 
       @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
         *,
         *::before,
         *::after {
-          scroll-behavior: auto !important;
           transition-duration: 0.01ms !important;
         }
       }
     </style>
   </head>
   <body>
-    <main class="page">
-      <header>
-        <div class="topline">
-          <span class="mark">Personal Homepage</span>
-          <span>A little corner of the web</span>
+    <a class="skip-link" href="#home">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#home">
+          <span class="brand-mark" aria-hidden="true">TP</span>
+          <span>Tapish Pawar</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="#home">Bio</a>
+          <a href="#research">Research</a>
+          <a href="#publications">Publications</a>
+          <a href="#fun">Fun part</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="page-shell">
+      <aside class="profile" aria-label="Profile">
+        <img class="profile-photo" src="tapish-pawar-avatar.jpg" alt="Tapish Pawar" width="200" height="200">
+        <h1>Tapish Pawar</h1>
+        <p class="profile-role">Plant pathology researcher<br>Crop disease and resilience</p>
+        <p class="affiliation">
+          <a href="https://www.sdstate.edu/" target="_blank" rel="noreferrer">South Dakota State University</a>
+        </p>
+        <div class="social-links" aria-label="Public profiles">
+          <a class="social-link" href="https://github.com/tapishpwr24" target="_blank" rel="noreferrer" aria-label="GitHub profile">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.05c-3.34.73-4.04-1.42-4.04-1.42-.55-1.4-1.34-1.77-1.34-1.77-1.1-.75.08-.74.08-.74 1.2.08 1.83 1.24 1.83 1.24 1.08 1.84 2.83 1.31 3.52 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.62-2.81 5.64-5.49 5.94.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 12 .5z"/></svg>
+          </a>
+          <a class="social-link" href="https://www.linkedin.com/in/tapish-pawar-1b25961b1?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_ios" target="_blank" rel="noreferrer" aria-label="LinkedIn profile">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .77 0 1.73v20.54C0 23.23.8 24 1.78 24h20.44c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          </a>
+          <a class="social-link" href="https://www.instagram.com/tapishpwr?fqnt=MTU0enJpdHBydGk4Zg%3D%3D&amp;utm_source=qr" target="_blank" rel="noreferrer" aria-label="Instagram @tapishpwr">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a class="social-link" href="https://www.facebook.com/share/1CnhfR476h/?mibextid=wwXIfr" target="_blank" rel="noreferrer" aria-label="Facebook profile">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M13.45 22v-8.29h2.79l.42-3.24h-3.21V8.4c0-.94.26-1.58 1.61-1.58h1.72V3.92c-.3-.04-1.34-.13-2.55-.13-2.53 0-4.26 1.54-4.26 4.38v2.3H7.11v3.24h2.86V22h3.48z"/></svg>
+          </a>
         </div>
-        <div class="hero">
-          <div>
-            <p class="eyebrow">Hello, and welcome</p>
-            <h1>Tapish Pawar</h1>
-            <p class="intro">
-              A short introduction goes here. Share what you do, what you care
-              about, and what you’re curious to explore next.
-            </p>
+        <p class="profile-links">
+          <a href="https://orcid.org/0000-0001-5918-8835" target="_blank" rel="noreferrer">ORCID 0000-0001-5918-8835</a>
+          <a href="https://www.instagram.com/tapishpwr?fqnt=MTU0enJpdHBydGk4Zg%3D%3D&amp;utm_source=qr" target="_blank" rel="noreferrer">Instagram @tapishpwr</a>
+        </p>
+        <p class="profile-note">Plant health · crop resilience · research</p>
+      </aside>
+
+      <main class="content">
+        <section class="content-section" id="home">
+          <p class="section-kicker">About Tapish Pawar</p>
+          <h2>Biography</h2>
+          <p class="lead">
+            I am a Ph.D. student in Plant Science at South Dakota State
+            University studying host resistance to bacterial leaf streak in
+            wheat. My research combines field and greenhouse phenotyping,
+            genome-wide association analysis, molecular plant pathology, and
+            image-based disease assessment. My experience also includes cereal
+            disease resistance, cotton begomoviruses, microbial biocontrol, and
+            machine learning for plant disease classification.
+          </p>
+          <div class="bio-group">
+            <h3>Education</h3>
+            <ul class="bio-list">
+              <li class="bio-entry">
+                <h4>Ph.D. in Plant Science</h4>
+                <p class="bio-entry-meta">South Dakota State University, Brookings, South Dakota · In progress</p>
+              </li>
+              <li class="bio-entry">
+                <h4>M.Sc. in Plant Pathology</h4>
+                <p class="bio-entry-meta">Punjab Agricultural University, Ludhiana, India · 2018–2021</p>
+              </li>
+              <li class="bio-entry">
+                <h4>B.Sc. in Agriculture</h4>
+                <p class="bio-entry-meta">Punjabi University, Patiala, India · 2014–2018</p>
+              </li>
+            </ul>
           </div>
-          <div class="portrait" aria-label="Tapish Pawar initials">TP</div>
-        </div>
-      </header>
-
-      <section class="site-card" aria-label="Personal website sections">
-        <div class="tabs" role="tablist" aria-label="Main navigation">
-          <button class="tab" id="tab-home" type="button" role="tab" aria-selected="true" aria-controls="panel-home" tabindex="0">Home</button>
-          <button class="tab" id="tab-research" type="button" role="tab" aria-selected="false" aria-controls="panel-research" tabindex="-1">Research</button>
-          <button class="tab" id="tab-publications" type="button" role="tab" aria-selected="false" aria-controls="panel-publications" tabindex="-1">Publications</button>
-          <button class="tab" id="tab-fun" type="button" role="tab" aria-selected="false" aria-controls="panel-fun" tabindex="-1">Fun part</button>
-          <button class="tab" id="tab-contact" type="button" role="tab" aria-selected="false" aria-controls="panel-contact" tabindex="-1">Contact</button>
-        </div>
-
-        <section class="panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home" tabindex="0">
-          <p class="eyebrow">A quick introduction</p>
-          <h2>Welcome to my homepage.</h2>
-          <p>
-            This is a place to share a little about who I am and what I’m up to.
-            Replace this placeholder with a friendly introduction.
-          </p>
-          <span class="placeholder">Based in [Your City]</span>
+          <div class="bio-group">
+            <h3>Research Experience</h3>
+            <ul class="bio-list">
+              <li class="bio-entry">
+                <h4>Graduate Research Assistant</h4>
+                <p class="bio-entry-meta">Plant Pathology Lab, South Dakota State University · August 2024–Present</p>
+                <p class="bio-entry-description">Study bacterial leaf streak resistance in durum wheat by combining field and greenhouse phenotyping, genomic analysis, image-based disease assessment, and deep-learning classification.</p>
+              </li>
+              <li class="bio-entry">
+                <h4>Research Associate I</h4>
+                <p class="bio-entry-meta">Plant Pathology Lab, South Dakota State University · July 2023–June 2024</p>
+                <p class="bio-entry-description">Screened wheat genotypes for rust and bacterial leaf streak resistance and supported lab and greenhouse research.</p>
+              </li>
+              <li class="bio-entry">
+                <h4>Research Fellow</h4>
+                <p class="bio-entry-meta">Department of Plant Pathology, Punjab Agricultural University · April 2022–June 2023</p>
+                <p class="bio-entry-description">Evaluated biological control agents against sugarcane diseases, characterized pathogens and biocontrol strains, and conducted field trials.</p>
+              </li>
+            </ul>
+          </div>
         </section>
 
-        <section class="panel" id="panel-research" role="tabpanel" aria-labelledby="tab-research" tabindex="0" hidden>
-          <p class="eyebrow">What I’m curious about</p>
-          <h2>Research</h2>
-          <p>
-            Add a few sentences about your research interests, current projects,
-            and the questions that motivate your work.
-          </p>
-          <span class="placeholder">Research area · Current project</span>
+        <section class="content-section" id="research">
+          <p class="section-kicker">Research</p>
+          <h2>Research interests</h2>
+          <ul class="research-interests">
+            <li>Host resistance to bacterial and fungal diseases of wheat and barley</li>
+            <li>Image-based and deep learning phenotyping of plant disease</li>
+            <li>Pathogen genomics</li>
+          </ul>
+          <article class="featured-study">
+            <div>
+              <p class="section-kicker">Featured publication</p>
+              <h3>
+                <a href="https://doi.org/10.1094/pdis-04-26-0761-re" target="_blank" rel="noreferrer">
+                  Screening for Fusarium Head Blight (FHB) Resistance in Elite Spring Barley
+                </a>
+              </h3>
+              <p>Evaluating elite spring barley for resistance to Fusarium head blight.</p>
+            </div>
+            <div class="featured-meta">
+              <span>2026 · Plant Disease</span>
+              <a href="https://doi.org/10.1094/pdis-04-26-0761-re" target="_blank" rel="noreferrer">Read publication ↗</a>
+            </div>
+          </article>
         </section>
 
-        <section class="panel" id="panel-publications" role="tabpanel" aria-labelledby="tab-publications" tabindex="0" hidden>
-          <p class="eyebrow">Selected work</p>
+        <section class="content-section" id="publications">
+          <p class="section-kicker">Selected work</p>
           <h2>Publications</h2>
-          <p>
-            Selected articles and preprints. Publication links open their DOI
-            records.
-          </p>
+          <p class="lead">Articles and preprints related to plant pathology and crop disease.</p>
           <ul class="publication-list">
             <li class="publication-item">
               <div>
@@ -392,68 +777,55 @@
               <span class="publication-year">2021</span>
             </li>
           </ul>
-          <a class="scholar-link" href="https://scholar.google.com/scholar?q=%22Tapish+Pawar%22" target="_blank" rel="noreferrer">
-            Search Tapish Pawar on Google Scholar
+          <a class="section-link" href="https://scholar.google.com/scholar?q=%22Tapish+Pawar%22" target="_blank" rel="noreferrer">
+            Search Tapish Pawar on Google Scholar ↗
           </a>
         </section>
 
-        <section class="panel" id="panel-fun" role="tabpanel" aria-labelledby="tab-fun" tabindex="0" hidden>
-          <p class="eyebrow">Outside the usual</p>
-          <h2>The fun part</h2>
-          <p>
-            Tell visitors what you enjoy beyond work: hobbies, favorite places,
-            small adventures, or something you’re learning just for fun.
-          </p>
-          <span class="placeholder">A few favorite things</span>
+        <section class="content-section" id="fun">
+          <p class="section-kicker">Beyond research</p>
+          <h2>Fun part</h2>
+          <p class="lead">A little more about my interests outside research will be added here.</p>
         </section>
 
-        <section class="panel" id="panel-contact" role="tabpanel" aria-labelledby="tab-contact" tabindex="0" hidden>
-          <p class="eyebrow">Let’s connect</p>
-          <h2>Contact</h2>
-          <p>
-            Add the best way to reach you, along with any professional or social
-            links you’d like to share.
-          </p>
-          <span class="placeholder">you@example.com</span>
+        <section class="content-section" id="contact">
+          <p class="section-kicker">Contact details</p>
+          <h2>Contact information</h2>
+          <div class="contact-panel">
+            <p>
+              For questions about plant pathology, publications, or research
+              collaborations, connect with me through my academic profiles.
+            </p>
+            <address class="contact-address">
+              <strong>Agronomy, Horticulture, &amp; Plant Science</strong><br>
+              Berg Agricultural Hall 263<br>
+              Brookings, SD 57007
+            </address>
+            <div class="contact-links">
+              <a class="contact-link" href="https://github.com/tapishpwr24" target="_blank" rel="noreferrer">
+                GitHub profile ↗
+              </a>
+              <a class="contact-link" href="https://scholar.google.com/scholar?q=%22Tapish+Pawar%22" target="_blank" rel="noreferrer">
+                Google Scholar search ↗
+              </a>
+              <a class="contact-link" href="https://orcid.org/0000-0001-5918-8835" target="_blank" rel="noreferrer">
+                ORCID profile ↗
+              </a>
+            </div>
+          </div>
         </section>
-      </section>
 
-      <footer class="footer">
-        <span>© <span id="year"></span> Tapish Pawar</span>
-        <span>Made with care, by me.</span>
-      </footer>
-    </main>
+        <footer class="footer">
+          <span>© <span id="year"></span> Tapish Pawar</span>
+          <span class="footer-links">
+            <a href="https://github.com/tapishpwr24" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://scholar.google.com/scholar?q=%22Tapish+Pawar%22" target="_blank" rel="noreferrer">Google Scholar</a>
+            <a href="https://orcid.org/0000-0001-5918-8835" target="_blank" rel="noreferrer">ORCID</a>
+          </span>
+        </footer>
+      </main>
+    </div>
     <script>
-      const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
-      const panels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
-
-      function activateTab(tab, moveFocus = false) {
-        tabs.forEach((item) => {
-          const selected = item === tab;
-          item.setAttribute("aria-selected", String(selected));
-          item.tabIndex = selected ? 0 : -1;
-        });
-        panels.forEach((panel) => {
-          panel.hidden = panel.id !== tab.getAttribute("aria-controls");
-        });
-        if (moveFocus) tab.focus();
-      }
-
-      tabs.forEach((tab, index) => {
-        tab.addEventListener("click", () => activateTab(tab));
-        tab.addEventListener("keydown", (event) => {
-          let nextIndex;
-          if (event.key === "ArrowRight") nextIndex = (index + 1) % tabs.length;
-          if (event.key === "ArrowLeft") nextIndex = (index - 1 + tabs.length) % tabs.length;
-          if (event.key === "Home") nextIndex = 0;
-          if (event.key === "End") nextIndex = tabs.length - 1;
-          if (nextIndex !== undefined) {
-            event.preventDefault();
-            activateTab(tabs[nextIndex], true);
-          }
-        });
-      });
-
       document.querySelector("#year").textContent = new Date().getFullYear();
     </script>
   </body>
