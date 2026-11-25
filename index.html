@@ -373,6 +373,26 @@
         background: var(--navy);
       }
 
+      .field-photos {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 16px;
+      }
+
+      .field-photos .field-moment {
+        margin: 0;
+      }
+
+      .field-moment img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+      }
+
       .field-moment figcaption {
         padding: 14px 18px;
         color: var(--muted);
@@ -572,6 +592,10 @@
           border: 0;
         }
 
+        .field-photos {
+          grid-template-columns: 1fr;
+        }
+
         .footer {
           flex-direction: column;
         }
@@ -722,6 +746,16 @@
               Our first field inoculation of bacterial leaf streak (BLS): the team inoculating the wheat plots together.
             </figcaption>
           </figure>
+          <div class="field-photos">
+            <figure class="field-moment">
+              <img src="field-with-advisor.jpg" alt="Tapish Pawar smiling in the wheat plots with advisor Dr. Gazala Ameen" width="900" height="1200" loading="lazy">
+              <figcaption>In the BLS field plots with my advisor, Dr. Gazala Ameen.</figcaption>
+            </figure>
+            <figure class="field-moment">
+              <img src="field-leaf-check.jpg" alt="Tapish Pawar in gloves examining a wheat leaf in the field" width="900" height="1200" loading="lazy">
+              <figcaption>Checking a wheat leaf during the BLS field trial.</figcaption>
+            </figure>
+          </div>
         </section>
 
         <section class="content-section" id="publications">
