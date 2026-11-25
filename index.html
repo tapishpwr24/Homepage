@@ -523,6 +523,10 @@
         gap: 18px;
       }
 
+      .research-area--full {
+        grid-column: 1 / -1;
+      }
+
       .research-strip {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -613,8 +617,13 @@
         aspect-ratio: 961 / 496;
       }
 
+      /* 4:3 lab photo beside a 3:4 portrait at one height: widths 16 to 9. */
+      .field-photos.lab-pair {
+        grid-template-columns: 16fr 9fr;
+      }
+
       .field-moment.lab-feature {
-        margin-top: 16px;
+        margin-top: 0;
       }
 
       .field-moment.lab-feature > img {
@@ -930,6 +939,19 @@
         color: var(--muted);
       }
 
+      .contact-email {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 12px;
+        margin-top: 16px !important;
+        font-weight: 650;
+      }
+
+      .contact-email a {
+        overflow-wrap: anywhere;
+      }
+
       .contact-address {
         margin-top: 16px;
         color: var(--muted);
@@ -1022,8 +1044,8 @@
         }
 
         /* Two portrait items that still fit side by side on a phone. */
-        .field-photos.field-photos--keep-pair {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+        .field-photos.lab-pair {
+          grid-template-columns: 1fr;
         }
 
         .research-strip {
@@ -1176,7 +1198,7 @@
           <a href="#home">Bio</a>
           <a href="#research">Research</a>
           <a href="#publications">Publications</a>
-          <a href="#fun">Fun part</a>
+          <a href="#fun">Beyond the lab</a>
           <a href="#contact">Contact</a>
         </nav>
       </div>
@@ -1250,12 +1272,12 @@
             <ul class="bio-list">
               <li class="bio-entry">
                 <h4>Graduate Research Assistant</h4>
-                <p class="bio-entry-meta">Plant Pathology Lab, South Dakota State University · August 2024–Present</p>
+                <p class="bio-entry-meta">Ameen Lab (Plant Pathology), South Dakota State University · August 2024–Present</p>
                 <p class="bio-entry-description">Study bacterial leaf streak resistance in durum wheat by combining field and greenhouse phenotyping, genomic analysis, image-based disease assessment, and deep-learning classification.</p>
               </li>
               <li class="bio-entry">
                 <h4>Research Associate I</h4>
-                <p class="bio-entry-meta">Plant Pathology Lab, South Dakota State University · July 2023–June 2024</p>
+                <p class="bio-entry-meta">Ameen Lab (Plant Pathology), South Dakota State University · July 2023–June 2024</p>
                 <p class="bio-entry-description">Screened wheat genotypes for rust and bacterial leaf streak resistance and supported lab and greenhouse research.</p>
               </li>
               <li class="bio-entry">
@@ -1338,7 +1360,7 @@
                 </figure>
               </div>
             </article>
-            <article class="research-area">
+            <article class="research-area research-area--full">
               <h3>Image-based disease phenotyping</h3>
               <p>
                 Scoring disease by eye is slow and varies between raters. I use
@@ -1347,16 +1369,6 @@
                 trials can be rated on the same scale. In a comparison of five
                 deep-learning models on 3,870 wheat leaf images, ResNet50
                 classified eight disease classes, including BLS, most accurately.
-              </p>
-            </article>
-            <article class="research-area">
-              <h3>Pathogen genomics</h3>
-              <p>
-                Resistance only holds up if we understand the pathogen it has to
-                stop. I am interested in how pathogen populations and strains
-                vary, building on earlier work characterizing cotton leaf curl
-                begomovirus strains and the pathogens and biocontrol strains of
-                sugarcane diseases.
               </p>
             </article>
           </div>
@@ -1385,30 +1397,23 @@
               Our first field inoculation of bacterial leaf streak (BLS): the team inoculating the wheat plots together.
             </figcaption>
           </figure>
-          <div class="field-photos field-photos--two field-photos--keep-pair">
-            <figure class="field-moment">
-              <video controls muted loop playsinline preload="metadata" poster="bls-seedling-rating.jpg" width="720" height="900">
-                <source src="bls-seedling-rating.mp4" type="video/mp4">
-                Your browser does not support embedded video.
-              </video>
-              <figcaption>Rating bacterial leaf streak (BLS) on durum wheat seedlings.</figcaption>
+          <div class="field-photos lab-pair">
+            <figure class="field-moment lab-feature">
+              <img decoding="async" src="ameen-lab-team.jpg" alt="Nine members of the Ameen Lab standing together in a hallway with framed photographs behind them" width="1120" height="840" loading="lazy">
+              <figcaption>
+                <img class="lab-logo" src="ameen-lab-logo.png" alt="Ameen Lab Plant Pathology logo" width="180" height="162" loading="lazy">
+                <span>
+                  <span class="section-kicker">Ameen Lab</span>
+                  The Ameen Lab plant pathology team at South Dakota State University,
+                  led by <a href="https://www.sdstate.edu/directory/gazala-ameen" target="_blank" rel="noreferrer">Dr. Gazala Ameen</a>.
+                </span>
+              </figcaption>
             </figure>
             <figure class="field-moment">
               <img decoding="async" src="field-with-advisor.jpg" alt="Tapish Pawar smiling in the wheat plots with advisor Dr. Gazala Ameen" width="600" height="800" loading="lazy">
               <figcaption>In the BLS field plots with my advisor, <a href="https://www.sdstate.edu/directory/gazala-ameen" target="_blank" rel="noreferrer">Dr. Gazala Ameen</a>.</figcaption>
             </figure>
           </div>
-          <figure class="field-moment lab-feature">
-            <img decoding="async" src="ameen-lab-team.jpg" alt="Nine members of the Ameen Lab standing together in a hallway with framed photographs behind them" width="1120" height="840" loading="lazy">
-            <figcaption>
-              <img class="lab-logo" src="ameen-lab-logo.png" alt="Ameen Lab Plant Pathology logo" width="180" height="162" loading="lazy">
-              <span>
-                <span class="section-kicker">Ameen Lab</span>
-                The Ameen Lab plant pathology team at South Dakota State University,
-                led by <a href="https://www.sdstate.edu/directory/gazala-ameen" target="_blank" rel="noreferrer">Dr. Gazala Ameen</a>.
-              </span>
-            </figcaption>
-          </figure>
         </section>
 
         <section class="content-section" id="publications">
@@ -1444,6 +1449,19 @@
             </li>
             <li class="publication-item">
               <p class="citation">
+                <span class="citation-authors">Ahmad, M., <strong class="me">Pawar, T.</strong>, Solanki, S., Glover, K., &amp; Ameen, G.</span>
+                <span class="citation-year">(2025).</span>
+                <span class="citation-title">An effective method for bacterial leaf streak disease severity estimation in controlled and field environments in small grains.</span>
+                <span class="citation-source"><i>Research Square</i> [Preprint, version 1].</span>
+              </p>
+              <div class="citation-actions">
+                <span class="pub-tag pub-tag--preprint">Preprint</span>
+                <a class="doi-link" href="https://doi.org/10.21203/rs.3.rs-8098615/v1" target="_blank" rel="noreferrer">DOI: 10.21203/rs.3.rs-8098615/v1</a>
+                <button class="copy-citation" type="button" aria-live="polite" data-doi="10.21203/rs.3.rs-8098615/v1">Copy citation</button>
+              </div>
+            </li>
+            <li class="publication-item">
+              <p class="citation">
                 <span class="citation-authors"><strong class="me">Pawar, T.</strong>, Sharma, S., Arora, R. K., &amp; Biswas, K. K.</span>
                 <span class="citation-year">(2024).</span>
                 <span class="citation-title">Distribution of cotton leaf curl virus species/strain and characterization of associated satellite molecules in <i>Gossypium hirsutum</i>.</span>
@@ -1453,6 +1471,18 @@
                 <span class="pub-tag pub-tag--article">Journal article</span>
                 <a class="doi-link" href="https://doi.org/10.1007/s42360-024-00758-6" target="_blank" rel="noreferrer">DOI: 10.1007/s42360-024-00758-6</a>
                 <button class="copy-citation" type="button" aria-live="polite" data-doi="10.1007/s42360-024-00758-6">Copy citation</button>
+              </div>
+            </li>
+            <li class="publication-item">
+              <p class="citation">
+                <span class="citation-authors"><strong class="me">Pawar, T.</strong>, Arora, R. K., Walia, G. S., &amp; Sharma, S.</span>
+                <span class="citation-year">(2022).</span>
+                <span class="citation-title">Effect of sowing period and disease severity grades of cotton leaf curl disease (CLCuD) on phenotypic characters of the American cotton in Punjab.</span>
+                <span class="citation-source"><i>Journal of Mycology and Plant Pathology</i>, <i>52</i>(2), 135–144.</span>
+              </p>
+              <div class="citation-actions">
+                <span class="pub-tag pub-tag--article">Journal article</span>
+                <button class="copy-citation" type="button" aria-live="polite">Copy citation</button>
               </div>
             </li>
             <li class="publication-item">
@@ -1492,6 +1522,18 @@
                 <span class="pub-tag pub-tag--article">Journal article</span>
                 <a class="doi-link" href="https://doi.org/10.5958/2249-8788.2021.00031.7" target="_blank" rel="noreferrer">DOI: 10.5958/2249-8788.2021.00031.7</a>
                 <button class="copy-citation" type="button" aria-live="polite" data-doi="10.5958/2249-8788.2021.00031.7">Copy citation</button>
+              </div>
+            </li>
+            <li class="publication-item">
+              <p class="citation">
+                <span class="citation-authors">Sharma, S., Sharma, V. K., &amp; <strong class="me">Pawar, T.</strong></span>
+                <span class="citation-year">(2021).</span>
+                <span class="citation-title">Natural occurrence of Euphorbia leaf curl virus (EuLCV) infecting zinnia in India.</span>
+                <span class="citation-source"><i>Indian Journal of Ecology</i>, <i>48</i>, 1798–1801.</span>
+              </p>
+              <div class="citation-actions">
+                <span class="pub-tag pub-tag--article">Journal article</span>
+                <button class="copy-citation" type="button" aria-live="polite">Copy citation</button>
               </div>
             </li>
           </ul>
@@ -1580,8 +1622,8 @@
         </section>
 
         <section class="content-section" id="fun">
-          <p class="section-kicker">Beyond research</p>
-          <h2>Fun part</h2>
+          <p class="section-kicker">Life outside research</p>
+          <h2>Beyond the lab</h2>
           <div class="field-photos">
             <figure class="field-moment">
               <img decoding="async" src="kitchen-garden-sowing.jpg" alt="Tapish Pawar crouching in freshly prepared soil, sowing seeds in a community garden at sunset" width="800" height="1067" loading="lazy">
@@ -1634,13 +1676,17 @@
           <div class="contact-panel">
             <p>
               For questions about plant pathology, publications, or research
-              collaborations, please write to the department at the address below.
+              collaborations, email me or write to the department at the address below.
             </p>
             <address class="contact-address">
               <strong>Agronomy, Horticulture, &amp; Plant Science</strong><br>
               Berg Agricultural Hall 263<br>
               Brookings, SD 57007
             </address>
+            <p class="contact-email">
+              <a href="mailto:Tapish.pawar@jacks.sdstate.edu">Tapish.pawar@jacks.sdstate.edu</a>
+              <button class="copy-citation copy-email" type="button" aria-live="polite" data-copy="Tapish.pawar@jacks.sdstate.edu">Copy email</button>
+            </p>
             <p>
               <a href="https://www.sdstate.edu/directory/tapish-pawar" target="_blank" rel="noreferrer">
                 SDSU directory profile ↗
@@ -1708,10 +1754,14 @@
       document.querySelectorAll(".copy-citation").forEach((button) => {
         const label = button.textContent;
         button.addEventListener("click", () => {
-          const citation = button.closest(".publication-item").querySelector(".citation");
-          const text =
-            citation.textContent.replace(/\s+/g, " ").trim() +
-            " https://doi.org/" + button.dataset.doi;
+          // Email button copies its address; citation buttons build the citation.
+          const citation = button.dataset.copy
+            ? button.previousElementSibling
+            : button.closest(".publication-item").querySelector(".citation");
+          const text = button.dataset.copy
+            ? button.dataset.copy
+            : citation.textContent.replace(/\s+/g, " ").trim() +
+              (button.dataset.doi ? " https://doi.org/" + button.dataset.doi : "");
           copyText(text)
             .then(() => {
               button.textContent = "Copied";
