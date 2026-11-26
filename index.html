@@ -447,49 +447,6 @@
         margin-top: 30px;
       }
 
-      /* News: short dated updates near the top. */
-      .news {
-        margin-top: 26px;
-        padding: 18px 22px;
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        background: var(--card);
-      }
-
-      .news h3 {
-        margin: 0 0 10px;
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: 1.3rem;
-        font-weight: 400;
-      }
-
-      .news-list {
-        display: grid;
-        gap: 10px;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .news-list li {
-        display: grid;
-        grid-template-columns: 76px minmax(0, 1fr);
-        gap: 14px;
-        color: #3F526B;
-        font-size: 0.9rem;
-        line-height: 1.5;
-      }
-
-      .news-date {
-        color: var(--blue);
-        font-size: 0.78rem;
-        font-weight: 800;
-        letter-spacing: 0.04em;
-        line-height: 1.9;
-        font-variant-numeric: tabular-nums;
-        white-space: nowrap;
-      }
-
       /* Folded bio lists: the heading row opens and closes the list. */
       .bio-fold {
         border-bottom: 1px solid var(--line);
@@ -574,24 +531,6 @@
 
       .software-card h3 a:hover {
         text-decoration: underline;
-      }
-
-      .software-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        margin: 12px 0 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .software-tags li {
-        padding: 2px 9px;
-        border-radius: 999px;
-        background: rgb(0 51 160 / 9%);
-        color: var(--blue);
-        font-size: 0.72rem;
-        font-weight: 750;
       }
 
       .software-card .section-link {
@@ -1181,14 +1120,6 @@
           grid-template-columns: 1fr;
         }
 
-        .news {
-          padding: 16px;
-        }
-
-        .news-list li {
-          grid-template-columns: 1fr;
-          gap: 0;
-        }
 
         .presentation {
           grid-template-columns: 1fr;
@@ -1395,31 +1326,6 @@
             <img decoding="async" src="wheat-field-banner.jpg" alt="Tapish Pawar in a Jackrabbits T-shirt and bucket hat, kneeling among heading wheat in a field trial" width="961" height="496">
             <figcaption>In the wheat field trials at South Dakota State University.</figcaption>
           </figure>
-          <div class="news">
-            <h3>News</h3>
-            <ul class="news-list">
-              <li>
-                <span class="news-date">Aug 2026</span>
-                <span>Gave an oral talk at APS Plant Health 2026 in Providence, Rhode Island, and received a travel award.</span>
-              </li>
-              <li>
-                <span class="news-date">Jun 2026</span>
-                <span>Presented a poster on deep learning for wheat disease classification at NC APS 2026, Michigan State University.</span>
-              </li>
-              <li>
-                <span class="news-date">2026</span>
-                <span>Paper on Fusarium head blight resistance in spring barley published online in <i>Plant Disease</i>.</span>
-              </li>
-              <li>
-                <span class="news-date">2026–27</span>
-                <span>Received the Edgar S. McFadden Graduate Student Scholarship.</span>
-              </li>
-              <li>
-                <span class="news-date">2026–27</span>
-                <span>Serving as President of the AHPS Graduate Student Association at SDSU.</span>
-              </li>
-            </ul>
-          </div>
           <details class="bio-group bio-fold">
             <summary>
               <h3>Education</h3>
@@ -1564,11 +1470,6 @@
                 it measures healthy and diseased leaf area and gives a 1–9 BLS rating,
                 for single images or whole batches.
               </p>
-              <ul class="software-tags" aria-label="Details">
-                <li>R</li>
-                <li>Batch processing</li>
-                <li>MIT license</li>
-              </ul>
               <a class="section-link" href="https://github.com/tapishpwr24/BLS_Image_Analyzer" target="_blank" rel="noreferrer">View on GitHub ↗</a>
             </article>
           </div>
