@@ -531,7 +531,7 @@
 
       .research-strip {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 14px;
       }
 
@@ -903,17 +903,11 @@
         text-wrap: balance;
       }
 
-      .presentation-authors,
-      .presentation-venue,
-      .presentation-summary {
+      .presentation-venue {
         margin: 8px 0 0;
         color: var(--muted);
         font-size: 0.86rem;
         line-height: 1.55;
-      }
-
-      .presentation-authors strong {
-        color: var(--ink);
       }
 
       .presentation-venue {
@@ -1353,10 +1347,6 @@
                   <figcaption>BLS-inoculated field nursery: resistant lines stay green while susceptible lines show streaking and drying leaves.</figcaption>
                 </figure>
                 <figure class="research-photo">
-                  <img decoding="async" src="bls-leaf-streak.jpg" alt="Wheat leaf held between fingers showing long tan bacterial leaf streak lesions" width="280" height="373" loading="lazy">
-                  <figcaption>Bacterial leaf streak lesions on a wheat leaf, caused by <i>Xanthomonas translucens</i>.</figcaption>
-                </figure>
-                <figure class="research-photo">
                   <img decoding="async" src="spot-blotch-barley.jpg" alt="Barley leaves covered in dark-brown spot blotch lesions surrounded by yellow chlorosis" width="600" height="800" loading="lazy">
                   <figcaption>Spot blotch on barley: dark-brown lesions with yellow chlorosis, caused by <i>Bipolaris sorokiniana</i>.</figcaption>
                 </figure>
@@ -1368,9 +1358,7 @@
                 Scoring disease by eye is slow and varies between raters. I use
                 leaf images and deep-learning classification to measure disease
                 severity more quickly and consistently, so that large screening
-                trials can be rated on the same scale. In a comparison of five
-                deep-learning models on 3,870 wheat leaf images, ResNet50
-                classified eight disease classes, including BLS, most accurately.
+                trials can be rated on the same scale.
               </p>
             </article>
           </div>
@@ -1548,14 +1536,13 @@
             <article class="presentation presentation--landscape">
               <img decoding="async" src="plant-health-2026-talk.jpg" alt="Tapish Pawar presenting at a podium beside a slide titled Mapping Bacterial Leaf Streak Resistance in Durum Wheat at Plant Health 2026" width="800" height="600" loading="lazy">
               <div class="presentation-body">
-                <p class="section-kicker">Oral presentation · August 2026</p>
+                <p class="section-kicker">Oral talk · August 2026</p>
                 <h4>Mapping Bacterial Leaf Streak Resistance in Durum Wheat</h4>
                 <p class="presentation-venue">Plant Health 2026 (APS Annual Meeting) · Providence, Rhode Island · August 1–4, 2026</p>
                 <ul class="award-chips" aria-label="Activities">
                   <li>Travel Award</li>
                   <li>Plant Diagnostics Bowl · Team Midwest Fun-Guys</li>
                 </ul>
-                <p class="presentation-summary">At the American Phytopathological Society's annual meeting, I presented my research on mapping BLS resistance in durum wheat and competed in the Plant Diagnostics Bowl with Team Midwest Fun-Guys. <a href="https://www.sdstate.edu/directory/gazala-ameen" target="_blank" rel="noreferrer">Dr. Gazala Ameen</a> and my co-advisor, Dr. Shyam Solanki, were there from SDSU too.</p>
               </div>
             </article>
             <article class="presentation presentation--landscape">
@@ -1563,40 +1550,35 @@
               <div class="presentation-body">
                 <p class="section-kicker">Poster · 2026</p>
                 <h4>Deep Learning-Based Classification of Wheat Foliar Diseases with a Focus on Bacterial Leaf Streak</h4>
-                <p class="presentation-authors"><strong>Tapish Pawar</strong>, Carolyn Heisel, Maitiniyazi Maimaitijiang, Kishore Chittem, Shyam Solanki, and <a href="https://www.sdstate.edu/directory/gazala-ameen" target="_blank" rel="noreferrer">Gazala Ameen</a></p>
                 <p class="presentation-venue">APS North Central Division Meeting (NC APS 2026) · Michigan State University, East Lansing · June 10–12, 2026</p>
-                <p class="presentation-summary">Visual disease scoring is slow and varies between raters. Using 3,870 field, greenhouse and public images across eight classes, I compared five transfer-learning models with an SVM baseline. ResNet50 performed best (weighted F1 of 0.953), BLS detection was near-perfect, and Grad-CAM maps showed the model focusing on the lesions. A U-Net segmentation step extends the workflow toward pixel-based severity estimates.</p>
               </div>
             </article>
             <article class="presentation">
               <img decoding="async" src="bls-conference-2026-talk.jpg" alt="Tapish Pawar speaking at a podium with a table of BLS resistance SNPs on the screen above" width="480" height="640" loading="lazy">
               <div class="presentation-body">
-                <p class="section-kicker">Poster and lightning talk · March 2026</p>
+                <p class="section-kicker">Short talk · March 2026</p>
                 <h4>Discovering Host Resistance Against Bacterial Leaf Streak Disease in Global Durum Wheat Panel</h4>
                 <p class="presentation-venue">Bacterial Leaf Streak Research Initiative · South Dakota State University, Brookings · March 30–31, 2026</p>
-                <p class="presentation-summary">I shared multi-trait genome-wide association results for BLS resistance in durum wheat. Several marker–trait associations were detected consistently across models, many loci were shared between adult plant resistance and disease progress (AUDPC), and seedling resistance appeared to be genetically distinct.</p>
               </div>
             </article>
             <article class="presentation">
               <img decoding="async" src="nc-aps-2025-awards.jpg" alt="Tapish Pawar holding up the Student Oral Presentation Competition and Graduate Student Travel Award certificates" width="480" height="640" loading="lazy">
               <div class="presentation-body">
-                <p class="section-kicker">Oral presentation · June 2025</p>
+                <p class="section-kicker">Oral talk · June 2025</p>
                 <h4>Discovering Resistance to Bacterial Leaf Streak Disease in Global Durum Wheat Panel</h4>
                 <p class="presentation-venue">APS North Central Division Meeting · Brookings, South Dakota · June 9–11, 2025</p>
                 <ul class="award-chips" aria-label="Awards">
                   <li>Student Oral Presentation Competition · Second Place</li>
                   <li>Graduate Student Travel Award</li>
                 </ul>
-                <p class="presentation-summary">I presented my Ph.D. research on finding bacterial leaf streak resistance in a global durum wheat panel, placed second in the student oral presentation competition, and received a graduate student travel award from the APS North Central Division.</p>
               </div>
             </article>
             <article class="presentation presentation--landscape">
               <img decoding="async" src="bls-meeting-2025-talk.jpg" alt="Tapish Pawar presenting a slide on the global distribution of Xanthomonas translucens and durum wheat production" width="800" height="600" loading="lazy">
               <div class="presentation-body">
-                <p class="section-kicker">Oral presentation · April 2025</p>
+                <p class="section-kicker">Oral talk · April 2025</p>
                 <h4>Mapping for Resistance to Bacterial Leaf Streak Disease in Global Durum Wheat Panel</h4>
                 <p class="presentation-venue">Bacterial Leaf Streak Research Initiative · University of Minnesota, St. Paul · April 9–11, 2025</p>
-                <p class="presentation-summary">My first BLS meeting. I presented my research on bacterial leaf streak in durum wheat, starting with where <i>Xanthomonas translucens</i> occurs worldwide and how that overlaps with durum wheat production.</p>
               </div>
             </article>
             <article class="presentation">
@@ -1604,9 +1586,7 @@
               <div class="presentation-body">
                 <p class="section-kicker">Poster · 2025</p>
                 <h4>Unraveling Resistance to Bacterial Leaf Streak Disease in Global Durum Wheat Panel</h4>
-                <p class="presentation-authors"><strong>Tapish Pawar</strong>, Muhammad Ahmad, Chunki Lau, Shyam Solanki, Karl D. Glover, Jeffrey D. Boehm, Filippo Bassi, and <a href="https://www.sdstate.edu/directory/gazala-ameen" target="_blank" rel="noreferrer">Gazala Ameen</a></p>
                 <p class="presentation-venue">SDSU Graduate School Research Day · South Dakota State University, Brookings · April 2025</p>
-                <p class="presentation-summary">Greenhouse screening of a global durum wheat panel for bacterial leaf streak, caused by <i>Xanthomonas translucens</i>, combined with genome-wide association analysis to find SNP markers linked to resistance for use in breeding.</p>
               </div>
             </article>
             <article class="presentation">
@@ -1614,9 +1594,7 @@
               <div class="presentation-body">
                 <p class="section-kicker">Poster · 2024</p>
                 <h4>Genomic Regions Associated with Spot Blotch (SB) Resistance in Barley in the Interspecific Cytonuclear Multi-Parent Population (CMPP)</h4>
-                <p class="presentation-authors"><strong>Tapish Pawar</strong>, Joseph Tilstra, Muhammad Ahmad, Avital Beery, Schewach Bodenheimer, Shengming Yang, Shyam Solanki, Eyal Fridman, and <a href="https://www.sdstate.edu/directory/gazala-ameen" target="_blank" rel="noreferrer">Gazala Ameen</a></p>
                 <p class="presentation-venue">APS North Central Division Meeting (NC APS 2024) · Manhattan, Kansas · June 10–12, 2024</p>
-                <p class="presentation-summary">Genome-wide association mapping of seedling resistance to spot blotch (<i>Bipolaris sorokiniana</i>) in 352 CMPP barley lines identified four marker–trait associations on chromosomes 1H, 5H, 6H and 7H.</p>
               </div>
             </article>
             </div>
