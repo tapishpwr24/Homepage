@@ -350,6 +350,7 @@
 
       .social-links {
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         gap: 7px;
         margin-top: 22px;
@@ -444,6 +445,157 @@
 
       .bio-group {
         margin-top: 30px;
+      }
+
+      /* News: short dated updates near the top. */
+      .news {
+        margin-top: 26px;
+        padding: 18px 22px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--card);
+      }
+
+      .news h3 {
+        margin: 0 0 10px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.3rem;
+        font-weight: 400;
+      }
+
+      .news-list {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .news-list li {
+        display: grid;
+        grid-template-columns: 76px minmax(0, 1fr);
+        gap: 14px;
+        color: #3F526B;
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .news-date {
+        color: var(--blue);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        line-height: 1.9;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+
+      /* Folded bio lists: the heading row opens and closes the list. */
+      .bio-fold {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .bio-fold + .bio-fold {
+        margin-top: 0;
+      }
+
+      .bio-fold summary {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 2px;
+        border-top: 1px solid var(--line);
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .bio-fold summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .bio-fold summary h3 {
+        margin: 0;
+        font-size: 1.3rem;
+      }
+
+      .bio-fold summary::after {
+        width: 9px;
+        height: 9px;
+        margin-left: 4px;
+        border-right: 2px solid var(--blue);
+        border-bottom: 2px solid var(--blue);
+        content: "";
+        transform: translateY(-3px) rotate(45deg);
+        transition: transform 200ms ease;
+      }
+
+      .bio-fold[open] summary::after {
+        transform: translateY(2px) rotate(-135deg);
+      }
+
+      .bio-fold summary:hover h3 {
+        color: var(--blue);
+      }
+
+      .bio-fold summary:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 2px;
+      }
+
+      .fold-count {
+        margin-left: auto;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .bio-fold .bio-list {
+        border-top: 0;
+        padding-bottom: 8px;
+      }
+
+      .bio-fold[open] .bio-list {
+        animation: menu-in 200ms ease-out;
+      }
+
+      .bio-fold .bio-entry:last-child {
+        border-bottom: 0;
+      }
+
+      /* Software card */
+      .research-area.software-card .section-kicker {
+        margin: 0 0 6px;
+        color: var(--blue);
+        font-size: 0.72rem;
+      }
+
+      .software-card h3 a {
+        text-decoration: none;
+      }
+
+      .software-card h3 a:hover {
+        text-decoration: underline;
+      }
+
+      .software-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .software-tags li {
+        padding: 2px 9px;
+        border-radius: 999px;
+        background: rgb(0 51 160 / 9%);
+        color: var(--blue);
+        font-size: 0.72rem;
+        font-weight: 750;
+      }
+
+      .software-card .section-link {
+        margin-top: 12px;
       }
 
       .bio-group h3 {
@@ -1029,6 +1181,15 @@
           grid-template-columns: 1fr;
         }
 
+        .news {
+          padding: 16px;
+        }
+
+        .news-list li {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+
         .presentation {
           grid-template-columns: 1fr;
         }
@@ -1150,6 +1311,7 @@
         }
 
         .profile,
+        .bio-fold[open] .bio-list,
         .main-nav.is-open,
         .copy-citation.is-copied {
           animation: none;
@@ -1188,6 +1350,15 @@
           <a href="https://www.sdstate.edu/" target="_blank" rel="noreferrer">South Dakota State University</a>
         </p>
         <div class="social-links" aria-label="Public profiles">
+          <a class="social-link" href="https://scholar.google.com/citations?user=XZpXRLUAAAAJ&amp;hl=en" target="_blank" rel="noreferrer" aria-label="Google Scholar profile">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+          </a>
+          <a class="social-link" href="https://www.researchgate.net/profile/Tapish-Pawar" target="_blank" rel="noreferrer" aria-label="ResearchGate profile">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><text x="12" y="16.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="currentColor">RG</text></svg>
+          </a>
+          <a class="social-link" href="https://orcid.org/0000-0001-5918-8835" target="_blank" rel="noreferrer" aria-label="ORCID profile 0000-0001-5918-8835">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" fill="currentColor"/><text x="12" y="16" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="700" fill="#FFFFFF">iD</text></svg>
+          </a>
           <a class="social-link" href="https://github.com/tapishpwr24" target="_blank" rel="noreferrer" aria-label="GitHub profile">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.05c-3.34.73-4.04-1.42-4.04-1.42-.55-1.4-1.34-1.77-1.34-1.77-1.1-.75.08-.74.08-.74 1.2.08 1.83 1.24 1.83 1.24 1.08 1.84 2.83 1.31 3.52 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.62-2.81 5.64-5.49 5.94.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 12 .5z"/></svg>
           </a>
@@ -1203,7 +1374,6 @@
         </div>
         <p class="profile-links">
           <a href="https://orcid.org/0000-0001-5918-8835" target="_blank" rel="noreferrer">ORCID 0000-0001-5918-8835</a>
-          <a href="https://www.instagram.com/tapishpwr?fqnt=MTU0enJpdHBydGk4Zg%3D%3D&amp;utm_source=qr" target="_blank" rel="noreferrer">Instagram @tapishpwr</a>
         </p>
         <p class="profile-note">Plant health · crop resilience · research</p>
       </aside>
@@ -1225,8 +1395,36 @@
             <img decoding="async" src="wheat-field-banner.jpg" alt="Tapish Pawar in a Jackrabbits T-shirt and bucket hat, kneeling among heading wheat in a field trial" width="961" height="496">
             <figcaption>In the wheat field trials at South Dakota State University.</figcaption>
           </figure>
-          <div class="bio-group">
-            <h3>Education</h3>
+          <div class="news">
+            <h3>News</h3>
+            <ul class="news-list">
+              <li>
+                <span class="news-date">Aug 2026</span>
+                <span>Gave an oral talk at APS Plant Health 2026 in Providence, Rhode Island, and received a travel award.</span>
+              </li>
+              <li>
+                <span class="news-date">Jun 2026</span>
+                <span>Presented a poster on deep learning for wheat disease classification at NC APS 2026, Michigan State University.</span>
+              </li>
+              <li>
+                <span class="news-date">2026</span>
+                <span>Paper on Fusarium head blight resistance in spring barley published online in <i>Plant Disease</i>.</span>
+              </li>
+              <li>
+                <span class="news-date">2026–27</span>
+                <span>Received the Edgar S. McFadden Graduate Student Scholarship.</span>
+              </li>
+              <li>
+                <span class="news-date">2026–27</span>
+                <span>Serving as President of the AHPS Graduate Student Association at SDSU.</span>
+              </li>
+            </ul>
+          </div>
+          <details class="bio-group bio-fold">
+            <summary>
+              <h3>Education</h3>
+              <span class="fold-count">3 entries</span>
+            </summary>
             <ul class="bio-list">
               <li class="bio-entry">
                 <h4>Ph.D. in Plant Science</h4>
@@ -1241,9 +1439,12 @@
                 <p class="bio-entry-meta">Punjabi University, Patiala, India · 2014–2018</p>
               </li>
             </ul>
-          </div>
-          <div class="bio-group">
-            <h3>Research Experience</h3>
+          </details>
+          <details class="bio-group bio-fold">
+            <summary>
+              <h3>Research Experience</h3>
+              <span class="fold-count">3 entries</span>
+            </summary>
             <ul class="bio-list">
               <li class="bio-entry">
                 <h4>Graduate Research Assistant</h4>
@@ -1261,9 +1462,12 @@
                 <p class="bio-entry-description">Evaluated biological control agents against sugarcane diseases, characterized pathogens and biocontrol strains, and conducted field trials.</p>
               </li>
             </ul>
-          </div>
-          <div class="bio-group">
-            <h3>Honors and awards</h3>
+          </details>
+          <details class="bio-group bio-fold">
+            <summary>
+              <h3>Honors and awards</h3>
+              <span class="fold-count">4 entries</span>
+            </summary>
             <ul class="bio-list">
               <li class="bio-entry">
                 <h4>Edgar S. McFadden Graduate Student Scholarship</h4>
@@ -1282,9 +1486,12 @@
                 <p class="bio-entry-meta">APS North Central Division Meeting · Brookings, South Dakota · 2025</p>
               </li>
             </ul>
-          </div>
-          <div class="bio-group">
-            <h3>Leadership and service</h3>
+          </details>
+          <details class="bio-group bio-fold">
+            <summary>
+              <h3>Leadership and service</h3>
+              <span class="fold-count">3 entries</span>
+            </summary>
             <ul class="bio-list">
               <li class="bio-entry">
                 <h4>President, AHPS Graduate Student Association</h4>
@@ -1299,7 +1506,7 @@
                 <p class="bio-entry-meta">Punjab Agricultural University · 2018–2019</p>
               </li>
             </ul>
-          </div>
+          </details>
         </section>
 
         <section class="content-section" id="research">
@@ -1346,6 +1553,23 @@
                   <span class="key key--necrotic">red</span> diseased.
                 </figcaption>
               </figure>
+            </article>
+            <article class="research-area research-area--full software-card">
+              <p class="section-kicker">Software</p>
+              <h3>
+                <a href="https://github.com/tapishpwr24/BLS_Image_Analyzer" target="_blank" rel="noreferrer">BLS Image Analyzer</a>
+              </h3>
+              <p>
+                Open-source tool that scores bacterial leaf streak from leaf photos:
+                it measures healthy and diseased leaf area and gives a 1–9 BLS rating,
+                for single images or whole batches.
+              </p>
+              <ul class="software-tags" aria-label="Details">
+                <li>R</li>
+                <li>Batch processing</li>
+                <li>MIT license</li>
+              </ul>
+              <a class="section-link" href="https://github.com/tapishpwr24/BLS_Image_Analyzer" target="_blank" rel="noreferrer">View on GitHub ↗</a>
             </article>
           </div>
           <figure class="field-moment">
