@@ -531,47 +531,17 @@
 
       .analyzer-figure {
         display: grid;
-        gap: 12px;
+        gap: 8px;
+        max-width: 640px;
         margin: 16px 0 0;
       }
 
-      .analyzer-row {
-        display: grid;
-        grid-template-columns: 150px minmax(0, 1fr);
-        align-items: center;
-        gap: 14px;
-      }
-
-      .analyzer-row img {
+      .analyzer-figure img {
         display: block;
         width: 100%;
         max-width: 100%;
         height: auto;
         border-radius: 8px;
-      }
-
-      .analyzer-score {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin: 0;
-        color: var(--muted);
-        font-size: 0.78rem;
-        line-height: 1.35;
-      }
-
-      .analyzer-num {
-        display: grid;
-        flex: 0 0 auto;
-        width: 38px;
-        height: 38px;
-        place-items: center;
-        border-radius: 50%;
-        background: var(--navy);
-        color: var(--yellow);
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: 1.15rem;
-        font-variant-numeric: tabular-nums;
       }
 
       .analyzer-figure figcaption {
@@ -1111,11 +1081,6 @@
           grid-template-columns: 1fr;
         }
 
-        .analyzer-row {
-          grid-template-columns: 1fr;
-          gap: 6px;
-        }
-
         .presentation {
           grid-template-columns: 1fr;
         }
@@ -1423,32 +1388,16 @@
             <article class="research-area research-area--full">
               <h3>Image-based disease phenotyping</h3>
               <p>
-                Scoring disease by eye is slow and varies between raters. I built
+                Scoring disease by eye is slow and varies between raters. I developed
                 <a href="https://github.com/tapishpwr24/BLS_Image_Analyzer" target="_blank" rel="noreferrer">BLS Image Analyzer</a>,
-                an R pipeline that separates the leaf from the background, classifies
-                each pixel as healthy, chlorotic or necrotic, and converts the diseased
-                area into a 1–9 BLS rating, so large screening trials can be scored
-                quickly and on the same scale.
+                which measures healthy and diseased leaf area from a photo and
+                converts it into a 1–9 BLS rating.
               </p>
               <figure class="analyzer-figure">
-                <div class="analyzer-row">
-                  <p class="analyzer-score"><span class="analyzer-num">2</span><span>Low<br>0.8% diseased</span></p>
-                  <img decoding="async" src="bls-analyzer-leaf-1.jpg" alt="Leaf with very few small lesions; almost all pixels classified as healthy. Top: original leaf. Bottom: overlay, green healthy and red necrotic." width="1000" height="330" loading="lazy">
-                </div>
-                <div class="analyzer-row">
-                  <p class="analyzer-score"><span class="analyzer-num">6</span><span>Moderate<br>25.8% diseased</span></p>
-                  <img decoding="async" src="bls-analyzer-leaf-2.jpg" alt="Leaf with scattered streaks; about a quarter of pixels classified as necrotic. Top: original leaf. Bottom: overlay, green healthy and red necrotic." width="1000" height="324" loading="lazy">
-                </div>
-                <div class="analyzer-row">
-                  <p class="analyzer-score"><span class="analyzer-num">8</span><span>High<br>71.9% diseased</span></p>
-                  <img decoding="async" src="bls-analyzer-leaf-3.jpg" alt="Heavily streaked leaf; most pixels classified as necrotic. Top: original leaf. Bottom: overlay, green healthy and red necrotic." width="1000" height="344" loading="lazy">
-                </div>
+                <img decoding="async" src="bls-analyzer-leaf-2.jpg" alt="A wheat leaf with bacterial leaf streak above its analysis, where green marks healthy tissue and red marks diseased tissue" width="1000" height="324" loading="lazy">
                 <figcaption>
-                  Example leaves scored by BLS Image Analyzer. In each pair, the top strip is
-                  the original leaf and the bottom strip is the classification:
-                  <span class="key key--healthy">green</span> healthy,
-                  <span class="key key--necrotic">red</span> necrotic.
-                  <a href="https://github.com/tapishpwr24/BLS_Image_Analyzer" target="_blank" rel="noreferrer">View the code on GitHub ↗</a>
+                  Leaf photo (top) and its analysis (bottom): <span class="key key--healthy">green</span> healthy,
+                  <span class="key key--necrotic">red</span> diseased. BLS rating 6, with 25.8% of the leaf diseased.
                 </figcaption>
               </figure>
             </article>
